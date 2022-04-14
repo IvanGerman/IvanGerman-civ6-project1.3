@@ -1,3 +1,4 @@
+import { data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 
 export class SelectionLogic {
@@ -15,7 +16,8 @@ export class SelectionLogic {
     this.func2Callback = function func2 (event)  {
       console.log('now show chart page');
       changeUrl('chartpage');
-      console.log('send civs data');
+      console.log('send civs data',data.csvRowsToArray);
+      //new ChartPage();
     };
   }
 

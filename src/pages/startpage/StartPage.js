@@ -1,3 +1,4 @@
+import { allCityStates, data } from '../../state/data';
 import './StartPage.scss';
 
 const StartPage = {
@@ -12,7 +13,8 @@ const StartPage = {
     `;
     return view;
   },
-  after_render: async () => {
+  
+  after_render: () => {
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);
 
@@ -27,19 +29,28 @@ const StartPage = {
         return;
       }
 
-      let reader = new FileReader();
-      reader.readAsText(fileList[0]);
-      reader.onload = function() {
-      console.log('reader.result-',reader.result);
-      };
+      //asynchronous action
+      async function getDataFromFile () {
+        let reader = new FileReader();
+        await reader.readAsText(fileList[0]);
+        reader.onload = async () => {
+        const rows = await reader.result.split('\n');
+        const csvRowsToArray = [];
+        rows.forEach((elem) => {
+          csvRowsToArray.push(elem.split(','));
+        });
+        data.setCsvRowsToArray = csvRowsToArray;
 
-      let url_ob = new URL(document.URL);
-      url_ob.hash = 'selectteamcivs';
-      // new url
-      let new_url = url_ob.href;
-      // change the current url
-      document.location.href = new_url;
-      }  
+        let url_ob = new URL(document.URL);
+        url_ob.hash = 'selectteamcivs';
+        // new url
+        let new_url = url_ob.href;
+        // change the current url
+        document.location.href = new_url;
+        };
+      }
+      getDataFromFile();
+    }  
   },
 };
 

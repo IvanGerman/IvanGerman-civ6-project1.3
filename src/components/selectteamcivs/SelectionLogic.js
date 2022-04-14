@@ -1,3 +1,5 @@
+import { changeUrl } from "../../state/functions";
+
 export class SelectionLogic {
 
   completedTeamCount = 0;
@@ -12,6 +14,8 @@ export class SelectionLogic {
     this.paragraph = document.querySelector('.paragraph2');
     this.func2Callback = function func2 (event)  {
       console.log('now show chart page');
+      changeUrl('chartpage');
+      console.log('send civs data');
     };
   }
 

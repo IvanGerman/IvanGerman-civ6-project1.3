@@ -1,4 +1,5 @@
 import { allCityStates, data } from '../../state/data';
+import { changeUrl } from '../../state/functions';
 import './StartPage.scss';
 
 const StartPage = {
@@ -41,12 +42,7 @@ const StartPage = {
         });
         data.setCsvRowsToArray = csvRowsToArray;
 
-        let url_ob = new URL(document.URL);
-        url_ob.hash = 'selectteamcivs';
-        // new url
-        let new_url = url_ob.href;
-        // change the current url
-        document.location.href = new_url;
+        changeUrl('selectteamcivs');
         };
       }
       getDataFromFile();

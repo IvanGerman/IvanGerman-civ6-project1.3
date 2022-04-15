@@ -5,8 +5,8 @@ class SelectTeamCivs {
   constructor() {
     console.log('SelectTeamCivs');
     console.log('data.csvRowsToArray-',data.csvRowsToArray);
-    //this.allCivs = this.getAllCivs(data.csvRowsToArray);
-    this.allCivs = ['HUNGARY', 'MACEDON', 'MONGOLIA', 'JAPAN', 'HUNGARY1', 'MACEDON1', 'MONGOLIA1', 'JAPAN1', 'HUNGARY2', 'MACEDON2', 'MONGOLIA2', 'JAPAN2'];
+    this.allCivs = this.getAllCivs(data.csvRowsToArray);
+    //this.allCivs = ['HUNGARY', 'MACEDON', 'MONGOLIA', 'JAPAN', 'HUNGARY1', 'MACEDON1', 'MONGOLIA1', 'JAPAN1', 'HUNGARY2', 'MACEDON2', 'MONGOLIA2', 'JAPAN2'];
     this._selectionLogicObj = new SelectionLogic();
     this.render();
   }
@@ -43,7 +43,7 @@ class SelectTeamCivs {
   createCivsButtons() {
     let civsButtonsBlock = this.allCivs.map(function callback(civ) {
 			
-      return	`<div class="single-civ">${civ}</div>`
+      return	`<div class="single-civ">${civ.substring(14)}</div>`
       }).join('');
     return civsButtonsBlock;
   }

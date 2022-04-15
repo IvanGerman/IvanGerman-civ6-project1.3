@@ -1,3 +1,4 @@
+import ChartPage from "../../pages/chartpage/ChartPage";
 import { data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 
@@ -16,8 +17,6 @@ export class SelectionLogic {
     this.func2Callback = function func2 (event)  {
       console.log('now show chart page');
       changeUrl('chartpage');
-      console.log('send civs data',data.csvRowsToArray);
-      //new ChartPage();
     };
   }
 
@@ -59,7 +58,7 @@ export class SelectionLogic {
         )
       }, 400);
     }
-    
+    data.setAllCivs = this.civsForComparing;
     return this.civsForComparing;
   }
 

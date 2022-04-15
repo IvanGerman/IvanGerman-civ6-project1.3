@@ -1,16 +1,12 @@
 export const data = {
   csvRowsToArray: null,
-  level: 1,
-  guessedWordsInRow: 0,
+  allCivs: null,
 
   set setCsvRowsToArray(value) {
     this.csvRowsToArray = value;
   },
-  set setLevel(value) {
-    this.level = value;
-  },
-  set setGuessedWordsInRow(value) {
-    this.guessedWordsInRow = value;
+  set setAllCivs(value) {
+    this.allCivs = value;
   }
 };
 

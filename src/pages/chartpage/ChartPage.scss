@@ -1,3 +1,24 @@
-.chart-div {
-  color: red;
+.chartWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: #333;
+  color: #ffffff;
+}
+
+.myChart {
+  margin-top: 5vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  margin-bottom: 1vh;
+}
+
+.turns-number {
+  color: #fff;
+  margin-left: 48vw;
+}
+
+.kind-of-stat {
+  color: #fff;
+  margin-top: 1vh;
+  margin-left: 1vw;
 }

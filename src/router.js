@@ -1,5 +1,5 @@
 import StartPage from './pages/startpage/StartPage';
-import SelectTeamCivs from './pages/selectteamcivs/SelectTeamCivs';
+import SelectTeamCivs from './pages/selectteamcivspage/SelectTeamCivsPage';
 import ChartPage from './pages/chartpage/ChartPage';
 import Utils from './utils/Utils';
 

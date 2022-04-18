@@ -5,21 +5,72 @@ export class ChartPageClass {
 
   xLabels = [];
   yLabels = [];
+  specCivArr = [];
+  allStatsForOneCiv = [];
 
   constructor(allCivs = data.allCivs) {
     this.allCivs = allCivs;
     console.log('allCivs--',this.allCivs);
     this.getDataForOneCiv(` CIVILIZATION_${this.allCivs[0]}`);
+    this.getAllStatsForOneCiv();
+    this.getFoodPerTurn();
+    this.chartIt();
   }   
 
   getDataForOneCiv(civ) {
-    let specCivArr = data.csvRowsToArray.filter((elem) => {
+    this.specCivArr = data.csvRowsToArray.filter((elem) => {
       return elem.includes(civ)
     });
-    console.log('specCivArr-',specCivArr);
+    console.log('this.specCivArr-',this.specCivArr);
   }
 
-  method1() {
-    return;
+  getAllStatsForOneCiv() {
+    this.specCivArr.forEach((elem) => {
+      const allStatsForOneCivObj = {};
+      allStatsForOneCivObj.citiesNumber = elem[2];
+      allStatsForOneCivObj.population = elem[3];
+      allStatsForOneCivObj.techs = elem[4];
+      allStatsForOneCivObj.civics = elem[5];
+      allStatsForOneCivObj.landUnits = elem[6];
+      allStatsForOneCivObj.navalUnits = elem[9];
+      allStatsForOneCivObj.tiles = elem[10];
+      allStatsForOneCivObj.improvedTiles = elem[11];
+      allStatsForOneCivObj.sciencePerTurn = elem[14];
+      allStatsForOneCivObj.culturePerTurn = elem[15];
+      allStatsForOneCivObj.goldPerTurn = elem[16];
+      allStatsForOneCivObj.faithPerTurn = elem[17];
+      allStatsForOneCivObj.productionPerTurn = elem[18];
+      allStatsForOneCivObj.foodPerTurn = elem[19];
+
+      this.allStatsForOneCiv.push(allStatsForOneCivObj);
+    });
+  
+    console.log('this.allStatsForOneCiv-',this.allStatsForOneCiv);
   }
+
+  getFoodPerTurn() {
+    for (let i = 0; i < this.allStatsForOneCiv.length; i += 1) {
+      this.xLabels.push(i + 1);
+      this.yLabels.push(parseFloat(this.allStatsForOneCiv[i].population) + 1);
+    }
+  }
+
+  chartIt() {
+  
+    const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: this.xLabels,
+              datasets: [{
+                  label: 'foodPerTurn',
+                  data: this.yLabels,
+                  backgroundColor:'rgba(255, 99, 132, 0.2)',
+                  borderColor:'rgba(255, 99, 132, 1)',
+                  borderWidth: 2
+              }]
+          }
+      });
+  };
+
 }

@@ -7,21 +7,35 @@ export class ChartPageClass {
   yLabels = [];
   specCivArr = [];
   allStatsForOneCiv = [];
+  allStatsForAllCivs = {};
+  datasetsArr = [];
+  allCivs = data.allCivs;
+  specCivArrAllCivs = [];
 
-  constructor(allCivs = data.allCivs) {
-    this.allCivs = allCivs;
+  constructor() {
     console.log('allCivs--',this.allCivs);
-    this.getDataForOneCiv(` CIVILIZATION_${this.allCivs[0]}`);
+    //this.getDataForOneCiv(` CIVILIZATION_${this.allCivs[0]}`);
+    this.getDataForAllCivs(this.allCivs);
     this.getAllStatsForOneCiv();
+    //this.getAllStatsForAllCivs(this.allCivs);
     this.getFoodPerTurn();
     this.chartIt();
   }   
 
   getDataForOneCiv(civ) {
     this.specCivArr = data.csvRowsToArray.filter((elem) => {
-      return elem.includes(civ)
+      return elem.includes(civ);
     });
     console.log('this.specCivArr-',this.specCivArr);
+    return this.specCivArr;
+  }
+
+  getDataForAllCivs(civs) {
+    civs.forEach((elem) => { console.log('elem--',elem);
+      let result = this.getDataForOneCiv(` CIVILIZATION_${elem}`);
+      this.specCivArrAllCivs.push(result);
+    })
+    console.log('this.specCivArrAllCivs-',this.specCivArrAllCivs);
   }
 
   getAllStatsForOneCiv() {
@@ -48,6 +62,14 @@ export class ChartPageClass {
     console.log('this.allStatsForOneCiv-',this.allStatsForOneCiv);
   }
 
+  // getAllStatsForAllCivs(civs) {
+  //   civs.forEach((elem) => {
+  //     let result = this.getAllStatsForOneCiv//----------------------
+  //     this.allStatsForAllCivs[` CIVILIZATION_${elem}`] = 35
+  //   })
+  //   console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
+  // }
+
   getFoodPerTurn() {
     for (let i = 0; i < this.allStatsForOneCiv.length; i += 1) {
       this.xLabels.push(i + 1);
@@ -63,7 +85,7 @@ export class ChartPageClass {
           data: {
               labels: this.xLabels,
               datasets: [{
-                  label: 'foodPerTurn',
+                  label: this.allCivs[0],
                   data: this.yLabels,
                   backgroundColor:'rgba(255, 99, 132, 0.2)',
                   borderColor:'rgba(255, 99, 132, 1)',

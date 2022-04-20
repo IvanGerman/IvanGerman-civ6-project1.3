@@ -14,11 +14,8 @@ export class ChartPageClass {
 
   constructor() {
     console.log('allCivs--',this.allCivs);
-    //this.getDataForOneCiv(` CIVILIZATION_${this.allCivs[0]}`);
-    this.getDataForAllCivs(this.allCivs);
-    this.getAllStatsForOneCiv();
-    //this.getAllStatsForAllCivs(this.allCivs);
-    this.getFoodPerTurn();
+    this.getAllStatsForAllCivs(this.allCivs);
+    this.getFoodPerTurn(` CIVILIZATION_${this.allCivs[0]}`);
     this.chartIt();
   }   
 
@@ -26,19 +23,12 @@ export class ChartPageClass {
     this.specCivArr = data.csvRowsToArray.filter((elem) => {
       return elem.includes(civ);
     });
-    console.log('this.specCivArr-',this.specCivArr);
+    //console.log('this.specCivArr-',this.specCivArr);
     return this.specCivArr;
   }
 
-  getDataForAllCivs(civs) {
-    civs.forEach((elem) => { console.log('elem--',elem);
-      let result = this.getDataForOneCiv(` CIVILIZATION_${elem}`);
-      this.specCivArrAllCivs.push(result);
-    })
-    console.log('this.specCivArrAllCivs-',this.specCivArrAllCivs);
-  }
-
-  getAllStatsForOneCiv() {
+  getAllStatsForOneCiv(civ) {
+    this.getDataForOneCiv(civ);
     this.specCivArr.forEach((elem) => {
       const allStatsForOneCivObj = {};
       allStatsForOneCivObj.citiesNumber = elem[2];
@@ -58,23 +48,26 @@ export class ChartPageClass {
 
       this.allStatsForOneCiv.push(allStatsForOneCivObj);
     });
-  
-    console.log('this.allStatsForOneCiv-',this.allStatsForOneCiv);
+    return this.allStatsForOneCiv;
   }
 
-  // getAllStatsForAllCivs(civs) {
-  //   civs.forEach((elem) => {
-  //     let result = this.getAllStatsForOneCiv//----------------------
-  //     this.allStatsForAllCivs[` CIVILIZATION_${elem}`] = 35
-  //   })
-  //   console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
-  // }
+  getAllStatsForAllCivs(civs) {
+    civs.forEach((elem) => {
+      let result = [...this.getAllStatsForOneCiv(` CIVILIZATION_${elem}`)];
+      //console.log('result--',elem, result);
+      this.allStatsForAllCivs[` CIVILIZATION_${elem}`] = result;
+      this.allStatsForOneCiv.length = 0;
+    })
+    console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
+  }
 
-  getFoodPerTurn() {
-    for (let i = 0; i < this.allStatsForOneCiv.length; i += 1) {
+  getFoodPerTurn(civ) {
+    for (let i = 0; i < this.allStatsForAllCivs[civ].length; i += 1) {
       this.xLabels.push(i + 1);
-      this.yLabels.push(parseFloat(this.allStatsForOneCiv[i].population) + 1);
+      this.yLabels.push(parseFloat(this.allStatsForAllCivs[civ][i].foodPerTurn));
     }
+    console.log('xLabels-',this.xLabels);
+      console.log('yLabels-',this.yLabels);
   }
 
   chartIt() {

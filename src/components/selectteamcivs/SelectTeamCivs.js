@@ -79,7 +79,7 @@ class SelectTeamCivs {
           };
           event.target.classList.add('selectedCiv');
 
-          this._selectionLogicObj.addCivForComparing(event.target.innerHTML, this.allCivs.length);
+          this._selectionLogicObj.addCivForComparing(` CIVILIZATION_${event.target.innerHTML}`, this.allCivs.length);
           console.log('this._selectionLogicObj.civsForComparing--',this._selectionLogicObj.civsForComparing);
 
           break;

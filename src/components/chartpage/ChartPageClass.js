@@ -15,7 +15,8 @@ export class ChartPageClass {
   constructor() {
     console.log('allCivs--',this.allCivs);
     this.getAllStatsForAllCivs(this.allCivs);
-    this.getFoodPerTurn(` CIVILIZATION_${this.allCivs[0]}`);
+    this.getFoodPerTurn(this.allCivs[0]);
+    this.getFoodPerTurn2(this.allCivs);
     this.chartIt();
   }   
 
@@ -53,9 +54,9 @@ export class ChartPageClass {
 
   getAllStatsForAllCivs(civs) {
     civs.forEach((elem) => {
-      let result = [...this.getAllStatsForOneCiv(` CIVILIZATION_${elem}`)];
+      let result = [...this.getAllStatsForOneCiv(elem)];
       //console.log('result--',elem, result);
-      this.allStatsForAllCivs[` CIVILIZATION_${elem}`] = result;
+      this.allStatsForAllCivs[elem] = result;
       this.allStatsForOneCiv.length = 0;
     })
     console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
@@ -68,6 +69,30 @@ export class ChartPageClass {
     }
     console.log('xLabels-',this.xLabels);
       console.log('yLabels-',this.yLabels);
+  }
+
+  getFoodPerTurn2(civs) {
+    for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
+      this.xLabels.push(i + 1);
+    };
+    console.log('xLabels-',this.xLabels);
+    
+    let datasetsObj = {};
+    let yLabels = [];
+
+    civs.forEach((elem) => {
+      for (let i = 0; i < this.allStatsForAllCivs[elem].length; i += 1) {
+        yLabels.push(parseFloat(this.allStatsForAllCivs[elem][i].foodPerTurn));
+      };
+      datasetsObj.label = elem;
+      datasetsObj.data = yLabels;
+      datasetsObj.backgroundColor = 'rgba(255, 99, 132, 0.2)';
+      datasetsObj.borderColor = 'rgba(255, 99, 132, 1)';
+      datasetsObj.borderWidth = 2;
+
+      this.datasetsArr.push(datasetsObj);
+    })
+      console.log('datasetsArr',this.datasetsArr);
   }
 
   chartIt() {

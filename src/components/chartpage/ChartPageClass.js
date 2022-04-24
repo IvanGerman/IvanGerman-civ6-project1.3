@@ -1,4 +1,4 @@
-import { data } from "../../state/data";
+import { backgroundColorsForChart, data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 
 export class ChartPageClass {
@@ -15,7 +15,7 @@ export class ChartPageClass {
   constructor() {
     console.log('allCivs--',this.allCivs);
     this.getAllStatsForAllCivs(this.allCivs);
-    this.getFoodPerTurn(this.allCivs[0]);
+    //this.getFoodPerTurn(this.allCivs[0]);
     this.getFoodPerTurn2(this.allCivs);
     this.chartIt();
   }   
@@ -62,14 +62,14 @@ export class ChartPageClass {
     console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
   }
 
-  getFoodPerTurn(civ) {
-    for (let i = 0; i < this.allStatsForAllCivs[civ].length; i += 1) {
-      this.xLabels.push(i + 1);
-      this.yLabels.push(parseFloat(this.allStatsForAllCivs[civ][i].foodPerTurn));
-    }
-    console.log('xLabels-',this.xLabels);
-      console.log('yLabels-',this.yLabels);
-  }
+  // getFoodPerTurn(civ) {
+  //   for (let i = 0; i < this.allStatsForAllCivs[civ].length; i += 1) {
+  //     this.xLabels.push(i + 1);
+  //     this.yLabels.push(parseFloat(this.allStatsForAllCivs[civ][i].foodPerTurn));
+  //   }
+  //   console.log('xLabels-',this.xLabels);
+  //     console.log('yLabels-',this.yLabels);
+  // }
 
   getFoodPerTurn2(civs) {
     for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
@@ -80,17 +80,18 @@ export class ChartPageClass {
     let datasetsObj = {};
     let yLabels = [];
 
-    civs.forEach((elem) => {
+    civs.forEach((elem, index) => {
       for (let i = 0; i < this.allStatsForAllCivs[elem].length; i += 1) {
         yLabels.push(parseFloat(this.allStatsForAllCivs[elem][i].foodPerTurn));
       };
       datasetsObj.label = elem;
-      datasetsObj.data = yLabels;
-      datasetsObj.backgroundColor = 'rgba(255, 99, 132, 0.2)';
-      datasetsObj.borderColor = 'rgba(255, 99, 132, 1)';
+      datasetsObj.data = [...yLabels];
+      yLabels.length = 0;
+      datasetsObj.backgroundColor = backgroundColorsForChart[index];
+      datasetsObj.borderColor = backgroundColorsForChart[index];
       datasetsObj.borderWidth = 2;
 
-      this.datasetsArr.push(datasetsObj);
+      this.datasetsArr.push({...datasetsObj});
     })
       console.log('datasetsArr',this.datasetsArr);
   }
@@ -102,13 +103,7 @@ export class ChartPageClass {
           type: 'line',
           data: {
               labels: this.xLabels,
-              datasets: [{
-                  label: this.allCivs[0],
-                  data: this.yLabels,
-                  backgroundColor:'rgba(255, 99, 132, 0.2)',
-                  borderColor:'rgba(255, 99, 132, 1)',
-                  borderWidth: 2
-              }]
+              datasets: this.datasetsArr
           }
       });
   };

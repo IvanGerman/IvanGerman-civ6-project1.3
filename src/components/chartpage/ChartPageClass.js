@@ -1,6 +1,5 @@
 import { backgroundColorsForChart, data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
-
 export class ChartPageClass {
 
   xLabels = [];
@@ -16,6 +15,7 @@ export class ChartPageClass {
     console.log('allCivs--',this.allCivs);
     this.getAllStatsForAllCivs(this.allCivs);
     //this.getFoodPerTurn(this.allCivs[0]);
+    //change y-achse title per innerHTML, default population
     this.getFoodPerTurn2(this.allCivs);
     this.chartIt();
   }   

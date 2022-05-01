@@ -1,5 +1,5 @@
 .chartWrapper {
-  width: 100vw;
+  max-width: 100vw;
   height: 100vh;
   background-color: #333;
   color: #ffffff;
@@ -21,4 +21,31 @@
   color: #fff;
   margin-top: 1vh;
   margin-left: 1vw;
+}
+
+//-------------------------------------------------------------------------------------------------------
+.statsButtonsWrapper {
+  max-width: 100vw;
+  height: 20vh;
+  background-color: #333;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.statsButton {
+  width: 10.7vw;
+  height: 5vh;
+  margin-left: 3vw;
+  text-align: center;
+  line-height: 5vh;
+  font-size: 2vh;
+  color: #ffffff;
+  cursor: pointer;
+  border: 2px solid red;
+  border-radius: 15px;
+  transition: all ease-in-out 0.5s;
+}
+
+.statsButton:hover {
+  background-color: #000000;
 }

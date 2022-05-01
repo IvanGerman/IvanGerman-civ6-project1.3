@@ -1,5 +1,6 @@
 import { backgroundColorsForChart, data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
+import { GettingStats } from "./GettingStats";
 export class ChartPageClass {
 
   xLabels = [];
@@ -18,6 +19,11 @@ export class ChartPageClass {
     //change y-achse title per innerHTML, default population
     this.getFoodPerTurn2(this.allCivs);
     this.chartIt();
+    //const gettingStatsObj = new GettingStats();
+    //gettingStatsObj.getPopulation();
+    const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
+    console.log('statsButtonsWrapper--',statsButtonsWrapper);
+    this.addEventListeners(statsButtonsWrapper);
   }   
 
   getDataForOneCiv(civ) {
@@ -107,5 +113,19 @@ export class ChartPageClass {
           }
       });
   };
+
+  addEventListeners(element) {
+    const gettingStatsObj = new GettingStats();
+    element.addEventListener('click', (event) => {
+      
+      if (event.target.dataset.buttonName === 'population') {
+        gettingStatsObj.getPopulation();
+      };
+      if (event.target.dataset.buttonName === 'cities') {
+        gettingStatsObj.getCities();
+      };
+
+    })
+  }
 
 }

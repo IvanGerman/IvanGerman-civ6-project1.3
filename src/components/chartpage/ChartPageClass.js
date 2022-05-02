@@ -118,12 +118,60 @@ export class ChartPageClass {
     const gettingStatsObj = new GettingStats();
     element.addEventListener('click', (event) => {
       
-      if (event.target.dataset.buttonName === 'population') {
-        gettingStatsObj.getPopulation();
-      };
-      if (event.target.dataset.buttonName === 'cities') {
-        gettingStatsObj.getCities();
-      };
+      switch(event.target.dataset.buttonName) {
+        case 'population':
+          gettingStatsObj.getPopulation();
+          break;
+        case 'cities':
+          gettingStatsObj.getCities();
+          break; 
+
+        case 'food':
+          gettingStatsObj.getFood();
+          break; 
+        case 'production':
+          gettingStatsObj.getProduction();
+          break;
+        case 'science':
+          gettingStatsObj.getScience();
+          break;  
+        case 'culture':
+          gettingStatsObj.getCulture();
+          break; 
+        case 'gold':
+          gettingStatsObj.getGold();
+          break;
+        case 'faith':
+          gettingStatsObj.getFaith();
+          break; 
+        case 'tiles':
+          gettingStatsObj.getTiles();
+          break; 
+        case 'improvedTiles':
+          gettingStatsObj.getImprovedTiles();
+          break;
+        case 'landUnits':
+          gettingStatsObj.getLandUnits();
+          break; 
+        case 'navalUnits':
+          gettingStatsObj.getNavalUnits();
+          break; 
+        case 'techs':
+          gettingStatsObj.getTechs();
+          break;
+        case 'civics':
+          gettingStatsObj.getCivics();
+          break; 
+        default:
+          return; 
+      }
+
+      // if (event.target.dataset.buttonName === 'population') {
+      //   gettingStatsObj.getPopulation();
+      // };
+      // if (event.target.dataset.buttonName === 'cities') {
+      //   gettingStatsObj.getCities();
+      // };
 
     })
   }

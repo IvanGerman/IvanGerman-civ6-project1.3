@@ -17,6 +17,7 @@ export class ChartPageClass {
     this.getAllStatsForAllCivs(this.allCivs);
     //this.getFoodPerTurn(this.allCivs[0]);
     //change y-achse title per innerHTML, default population
+    this.getXLabelsValues(this.allCivs);
     this.getFoodPerTurn2(this.allCivs);
     this.chartIt();
     //const gettingStatsObj = new GettingStats();
@@ -77,11 +78,17 @@ export class ChartPageClass {
   //     console.log('yLabels-',this.yLabels);
   // }
 
-  getFoodPerTurn2(civs) {
+  getXLabelsValues(civs) {
     for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
       this.xLabels.push(i + 1);
     };
     console.log('xLabels-',this.xLabels);
+  }
+  getFoodPerTurn2(civs) {
+    // for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
+    //   this.xLabels.push(i + 1);
+    // };
+    // console.log('xLabels-',this.xLabels);
     
     let datasetsObj = {};
     let yLabels = [];
@@ -105,7 +112,14 @@ export class ChartPageClass {
   chartIt() {
   
     const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
+
+      let myChart = null;
+
+      if (Chart.getChart("myChart")) {
+        Chart.getChart("myChart").destroy();
+      };
+
+      myChart = new Chart(ctx, {
           type: 'line',
           data: {
               labels: this.xLabels,
@@ -122,8 +136,10 @@ export class ChartPageClass {
         case 'population':
           gettingStatsObj.getPopulation();
           break;
+
         case 'cities':
-          gettingStatsObj.getCities();
+          this.datasetsArr = gettingStatsObj.getCities(this.allCivs, this.allStatsForAllCivs);
+          this.chartIt();
           break; 
 
         case 'food':

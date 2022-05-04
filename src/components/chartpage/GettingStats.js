@@ -5,6 +5,34 @@ export class GettingStats {
     console.log('getPopulation');
   }
 
+
+  getStat(civs, allStatsForAllCivs, kindOfStat) {
+    console.log('kindOfStat--', kindOfStat, civs, allStatsForAllCivs);
+
+    let datasetsObj = {};
+    let yLabels = [];
+    let arr = [];
+
+    civs.forEach((elem, index) => {
+      for (let i = 0; i < allStatsForAllCivs[elem].length; i += 1) {
+        yLabels.push(parseFloat(allStatsForAllCivs[elem][i][kindOfStat]));
+      };
+      datasetsObj.label = elem;
+      datasetsObj.data = [...yLabels];
+      yLabels.length = 0;
+      datasetsObj.backgroundColor = backgroundColorsForChart[index];
+      datasetsObj.borderColor = backgroundColorsForChart[index];
+      datasetsObj.borderWidth = 2;
+
+      arr.push({...datasetsObj});
+    })
+      console.log('arr--',arr);
+      return arr;
+  }
+
+
+
+
   getCities(civs, allStatsForAllCivs) {
     console.log('getCities', civs, allStatsForAllCivs);
 

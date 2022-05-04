@@ -134,49 +134,64 @@ export class ChartPageClass {
       
       switch(event.target.dataset.buttonName) {
         case 'population':
-          gettingStatsObj.getPopulation();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'population');
+          this.chartIt();
           break;
 
         case 'cities':
-          this.datasetsArr = gettingStatsObj.getCities(this.allCivs, this.allStatsForAllCivs);
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'citiesNumber');
           this.chartIt();
           break; 
 
         case 'food':
-          gettingStatsObj.getFood();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'foodPerTurn');
+          this.chartIt();
+          //gettingStatsObj.getFood();
           break; 
+
         case 'production':
-          gettingStatsObj.getProduction();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'productionPerTurn');
+          this.chartIt();
           break;
         case 'science':
-          gettingStatsObj.getScience();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'sciencePerTurn');
+          this.chartIt();
           break;  
         case 'culture':
-          gettingStatsObj.getCulture();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'culturePerTurn');
+          this.chartIt();
           break; 
         case 'gold':
-          gettingStatsObj.getGold();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'goldPerTurn');
+          this.chartIt();
           break;
         case 'faith':
-          gettingStatsObj.getFaith();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'faithPerTurn');
+          this.chartIt();
           break; 
         case 'tiles':
-          gettingStatsObj.getTiles();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'tiles');
+          this.chartIt();
           break; 
         case 'improvedTiles':
-          gettingStatsObj.getImprovedTiles();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'improvedTiles');
+          this.chartIt();
           break;
         case 'landUnits':
-          gettingStatsObj.getLandUnits();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'landUnits');
+          this.chartIt();
           break; 
         case 'navalUnits':
-          gettingStatsObj.getNavalUnits();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'navalUnits');
+          this.chartIt();
           break; 
         case 'techs':
-          gettingStatsObj.getTechs();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'techs');
+          this.chartIt();
           break;
         case 'civics':
-          gettingStatsObj.getCivics();
+          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'civics');
+          this.chartIt();
           break; 
         default:
           return; 

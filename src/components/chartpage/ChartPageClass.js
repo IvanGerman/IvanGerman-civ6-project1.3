@@ -11,6 +11,7 @@ export class ChartPageClass {
   datasetsArr = [];
   allCivs = data.allCivs;
   specCivArrAllCivs = [];
+  gettingStatsObj = new GettingStats();
 
   constructor() {
     console.log('allCivs--',this.allCivs);
@@ -69,15 +70,6 @@ export class ChartPageClass {
     console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
   }
 
-  // getFoodPerTurn(civ) {
-  //   for (let i = 0; i < this.allStatsForAllCivs[civ].length; i += 1) {
-  //     this.xLabels.push(i + 1);
-  //     this.yLabels.push(parseFloat(this.allStatsForAllCivs[civ][i].foodPerTurn));
-  //   }
-  //   console.log('xLabels-',this.xLabels);
-  //     console.log('yLabels-',this.yLabels);
-  // }
-
   getXLabelsValues(civs) {
     for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
       this.xLabels.push(i + 1);
@@ -85,10 +77,6 @@ export class ChartPageClass {
     console.log('xLabels-',this.xLabels);
   }
   getFoodPerTurn2(civs) {
-    // for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
-    //   this.xLabels.push(i + 1);
-    // };
-    // console.log('xLabels-',this.xLabels);
     
     let datasetsObj = {};
     let yLabels = [];
@@ -128,82 +116,64 @@ export class ChartPageClass {
       });
   };
 
+  getSpecialStat(kindOfStat) {
+    this.datasetsArr = this.gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, kindOfStat);
+    this.chartIt();
+  }
+
   addEventListeners(element) {
-    const gettingStatsObj = new GettingStats();
+
     element.addEventListener('click', (event) => {
       
       switch(event.target.dataset.buttonName) {
         case 'population':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'population');
-          this.chartIt();
+          this.getSpecialStat('population');
           break;
 
         case 'cities':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'citiesNumber');
-          this.chartIt();
+          this.getSpecialStat('citiesNumber');
           break; 
 
         case 'food':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'foodPerTurn');
-          this.chartIt();
-          //gettingStatsObj.getFood();
+          this.getSpecialStat('foodPerTurn');
           break; 
 
         case 'production':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'productionPerTurn');
-          this.chartIt();
+          this.getSpecialStat('productionPerTurn');
           break;
         case 'science':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'sciencePerTurn');
-          this.chartIt();
+          this.getSpecialStat('sciencePerTurn');
           break;  
         case 'culture':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'culturePerTurn');
-          this.chartIt();
+          this.getSpecialStat('culturePerTurn');
           break; 
         case 'gold':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'goldPerTurn');
-          this.chartIt();
+          this.getSpecialStat('goldPerTurn');
           break;
         case 'faith':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'faithPerTurn');
-          this.chartIt();
+          this.getSpecialStat('faithPerTurn');
           break; 
         case 'tiles':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'tiles');
-          this.chartIt();
+          this.getSpecialStat('tiles');
           break; 
         case 'improvedTiles':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'improvedTiles');
-          this.chartIt();
+          this.getSpecialStat('improvedTiles');
           break;
         case 'landUnits':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'landUnits');
-          this.chartIt();
+          this.getSpecialStat('landUnits');       
           break; 
         case 'navalUnits':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'navalUnits');
-          this.chartIt();
+          this.getSpecialStat('navalUnits');    
           break; 
         case 'techs':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'techs');
-          this.chartIt();
+          this.getSpecialStat('techs');     
           break;
         case 'civics':
-          this.datasetsArr = gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, 'civics');
-          this.chartIt();
+          this.getSpecialStat('civics');
           break; 
         default:
           return; 
       }
-
-      // if (event.target.dataset.buttonName === 'population') {
-      //   gettingStatsObj.getPopulation();
-      // };
-      // if (event.target.dataset.buttonName === 'cities') {
-      //   gettingStatsObj.getCities();
-      // };
-
     })
   }
 

@@ -22,13 +22,14 @@ const StartPage = {
     function handleFiles() {
       const fileList = this.files; /* now you can work with the file list */
       console.log(fileList);
-      console.log(fileList[0]);
+      console.log('fileList[0]--',fileList[0]);
 
+      //  LATER TO UNCOMMENT
       //here we prove the correct file name
-      if (fileList[0].name !== 'Player_Stats.csv') {
-        alert('wrong file');
-        return;
-      }
+      // if (fileList[0].name !== 'Player_Stats.csv') {
+      //   alert('wrong file');
+      //   return;
+      // }
 
       //asynchronous action
       async function getDataFromFile () {
@@ -40,12 +41,31 @@ const StartPage = {
         rows.forEach((elem) => {
           csvRowsToArray.push(elem.split(','));
         });
-        data.setCsvRowsToArray = csvRowsToArray;
+        let result;
+        //checking if there are 2 games stats in this file
+        for (let i = 1; i < csvRowsToArray.length - 2; i += 1) {
+          console.log(csvRowsToArray[i][0]);
+          
+          if ( Number(csvRowsToArray[i][0]) > Number(csvRowsToArray[i + 1][0]) ) {
+            
+            result = [...csvRowsToArray].slice(i + 1) //.unshift(csvRowsToArray[0])
+            result.unshift(csvRowsToArray[0]);
+            data.setCsvRowsToArray = [...result];
+            result = [];
+
+            changeUrl('selectteamcivs');
+            return;
+          }
+        }
+        result = [...csvRowsToArray];
+        data.setCsvRowsToArray = [...result];
+        result = [];
 
         changeUrl('selectteamcivs');
         };
       }
       getDataFromFile();
+      
     }  
   },
 };

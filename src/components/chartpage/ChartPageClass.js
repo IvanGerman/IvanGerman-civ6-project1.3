@@ -15,16 +15,13 @@ export class ChartPageClass {
 
   constructor() {
     console.log('allCivs--',this.allCivs);
+    this.yAxisTitle = document.querySelector('.kind-of-stat');
     this.getAllStatsForAllCivs(this.allCivs);
-    //this.getFoodPerTurn(this.allCivs[0]);
-    //change y-achse title per innerHTML, default population
     this.getXLabelsValues(this.allCivs);
-    this.getFoodPerTurn2(this.allCivs);
-    this.chartIt();
-    //const gettingStatsObj = new GettingStats();
-    //gettingStatsObj.getPopulation();
+    this.getSpecialStat('population');
+    //this.getFoodPerTurn2(this.allCivs);
+    //this.chartIt();
     const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
-    console.log('statsButtonsWrapper--',statsButtonsWrapper);
     this.addEventListeners(statsButtonsWrapper);
   }   
 
@@ -32,7 +29,6 @@ export class ChartPageClass {
     this.specCivArr = data.csvRowsToArray.filter((elem) => {
       return elem.includes(civ);
     });
-    //console.log('this.specCivArr-',this.specCivArr);
     return this.specCivArr;
   }
 
@@ -63,7 +59,6 @@ export class ChartPageClass {
   getAllStatsForAllCivs(civs) {
     civs.forEach((elem) => {
       let result = [...this.getAllStatsForOneCiv(elem)];
-      //console.log('result--',elem, result);
       this.allStatsForAllCivs[elem] = result;
       this.allStatsForOneCiv.length = 0;
     })
@@ -74,8 +69,8 @@ export class ChartPageClass {
     for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
       this.xLabels.push(i + 1);
     };
-    console.log('xLabels-',this.xLabels);
   }
+
   getFoodPerTurn2(civs) {
     
     let datasetsObj = {};
@@ -119,6 +114,7 @@ export class ChartPageClass {
   getSpecialStat(kindOfStat) {
     this.datasetsArr = this.gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, kindOfStat);
     this.chartIt();
+    this.yAxisTitle.innerHTML = kindOfStat;
   }
 
   addEventListeners(element) {

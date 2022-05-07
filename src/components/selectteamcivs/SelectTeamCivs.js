@@ -7,6 +7,7 @@ class SelectTeamCivs {
     console.log('data.csvRowsToArray-',data.csvRowsToArray);
     this.allCivs = this.getAllCivs(data.csvRowsToArray);
     //this.allCivs = ['HUNGARY', 'MACEDON', 'MONGOLIA', 'JAPAN', 'HUNGARY1', 'MACEDON1', 'MONGOLIA1', 'JAPAN1', 'HUNGARY2', 'MACEDON2', 'MONGOLIA2', 'JAPAN2'];
+    data.setAllCivsForTeamSelection = this.allCivs;
     this._selectionLogicObj = new SelectionLogic();
     this.render();
   }

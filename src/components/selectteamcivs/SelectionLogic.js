@@ -20,16 +20,31 @@ export class SelectionLogic {
     };
   }
 
+  //---------------------------------------------------------------------------------
+  getAllCivs(civs) {
+    return civs;
+  }
+
   addToTeam(selectedCiv, maxTeamMembers) {
     this.team1.push(selectedCiv);
     this.completedTeamCount += 1;
     if (this.completedTeamCount >= maxTeamMembers) {
       console.log('completedTeam');
+      //disable all other unselected buttons
       //start to show go button and then chart
-      //need all civs to get team2
-    
+      //get team2
+      function getTeam2(allCivs, team1Civs) {
+        const allCivsModified = allCivs.map((elem) => { 
+          return elem.slice(14) });
+        let result = allCivsModified.filter( (elem) => {
+          return !team1Civs.includes(elem);
+        })
+        return result;
+      };
+      this.team2 = getTeam2(data.allCivsForTeamSelection, this.team1);
     }
-    return this.team1;
+     
+    return this.team1, this.team2;
   }
 
   removeFromTeam(selectedCiv) {

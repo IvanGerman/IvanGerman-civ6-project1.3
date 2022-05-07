@@ -48,7 +48,7 @@ const StartPage = {
           
           if ( Number(csvRowsToArray[i][0]) > Number(csvRowsToArray[i + 1][0]) ) {
             
-            result = [...csvRowsToArray].slice(i + 1) //.unshift(csvRowsToArray[0])
+            result = [...csvRowsToArray].slice(i + 1);
             result.unshift(csvRowsToArray[0]);
             data.setCsvRowsToArray = [...result];
             result = [];

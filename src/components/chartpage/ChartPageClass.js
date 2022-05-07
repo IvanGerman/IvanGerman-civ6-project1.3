@@ -92,7 +92,7 @@ export class ChartPageClass {
       console.log('datasetsArr',this.datasetsArr);
   }
 
-  chartIt() {
+  chartIt() {  console.log('datasetsArr',this.datasetsArr);
   
     const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -107,6 +107,48 @@ export class ChartPageClass {
           data: {
               labels: this.xLabels,
               datasets: this.datasetsArr
+          },
+          options: {
+            layout: {
+              padding: 0
+            },
+            plugins: {
+              legend: {
+                display: true,
+                onHover : () => {
+                  console.log('legend hover');
+                  const labelCanvas = document.querySelector('.myChart');
+                  labelCanvas.style.cursor = 'pointer';
+                },
+                onLeave : () => {
+                  console.log('legend Leave');
+                  const labelCanvas = document.querySelector('.myChart');
+                  labelCanvas.style.cursor = 'default';
+                },
+                labels: {
+                  render: 'label',
+                  precision: 1,
+                  arc: false,
+                  position: 'border',
+                  font: {
+                    size: 15
+                  },
+                  color: [
+                    '#ffffff'
+                  ]
+                }
+              },
+              // labels: {
+              //   render: 'label',
+              //   precision: 1,
+              //   arc: false,
+              //   position: 'border',
+              //   fontSize: 50,
+              //   fontColor: [
+              //     'rgba(211, 66, 25, 1)'
+              //   ]
+              // }
+            }
           }
       });
   };

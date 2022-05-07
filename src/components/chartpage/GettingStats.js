@@ -17,7 +17,7 @@ export class GettingStats {
       for (let i = 0; i < allStatsForAllCivs[elem].length; i += 1) {
         yLabels.push(parseFloat(allStatsForAllCivs[elem][i][kindOfStat]));
       };
-      datasetsObj.label = elem;
+      datasetsObj.label = elem.slice(14);
       datasetsObj.data = [...yLabels];
       yLabels.length = 0;
       datasetsObj.backgroundColor = backgroundColorsForChart[index];

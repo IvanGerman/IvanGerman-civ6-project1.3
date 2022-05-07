@@ -126,28 +126,35 @@ export class ChartPageClass {
                   labelCanvas.style.cursor = 'default';
                 },
                 labels: {
-                  render: 'label',
-                  precision: 1,
-                  arc: false,
-                  position: 'border',
+                  // render: 'label',
+                  // precision: 1,
+                  // arc: false,
+                  // position: 'border',
                   font: {
                     size: 15
                   },
                   color: [
                     '#ffffff'
                   ]
+                },
+                title: {
+                  font: {
+                    size: 15
+                  }
                 }
               },
-              // labels: {
-              //   render: 'label',
-              //   precision: 1,
-              //   arc: false,
-              //   position: 'border',
-              //   fontSize: 50,
-              //   fontColor: [
-              //     'rgba(211, 66, 25, 1)'
-              //   ]
-              // }
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: '#ffffff'
+                }
+              },
+              y: {
+                ticks: {
+                  color: '#ffffff'
+                }
+              }
             }
           }
       });

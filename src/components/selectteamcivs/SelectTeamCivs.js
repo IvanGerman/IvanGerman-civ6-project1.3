@@ -62,12 +62,28 @@ class SelectTeamCivs {
           if (event.target.classList[1] === 'selectedCiv') {
             event.target.classList.remove('selectedCiv');
             this._selectionLogicObj.removeFromTeam(event.target.innerHTML);
+            if (this._selectionLogicObj.isTeamComplete === true) {
+              this._selectionLogicObj.isTeamComplete = false;
+              this._selectionLogicObj.paragraph1.removeEventListener('click', this._selectionLogicObj.func1Callback);
+              this._selectionLogicObj.paragraph1.style.opacity = '0';
+              setTimeout(() => {
+                this._selectionLogicObj.paragraph1.innerHTML = 'Select civs of team1 or team2 to see team stats';
+                this._selectionLogicObj.paragraph1.style.color = '#ffffff';
+                this._selectionLogicObj.paragraph1.style.opacity = '1';
+              }, 400);
+            }
             return;
           };
-          event.target.classList.add('selectedCiv');
 
-          this._selectionLogicObj.addToTeam(event.target.innerHTML, this.allCivs.length / 2);
-          console.log('this._selectionLogicObj.team1--',this._selectionLogicObj.team1); 
+          console.log('this._selectionLogicObj.isTeamComplete--',this._selectionLogicObj.isTeamComplete);
+          if (this._selectionLogicObj.isTeamComplete === false) {
+            event.target.classList.add('selectedCiv');
+
+            this._selectionLogicObj.addToTeam(event.target.innerHTML, this.allCivs.length / 2);
+            console.log('this._selectionLogicObj.team1--',this._selectionLogicObj.team1);
+            console.log('this._selectionLogicObj.team2--',this._selectionLogicObj.team2);
+          }
+
           break;
 
         case 'innerDiv2':

@@ -5,6 +5,7 @@ import { changeUrl } from "../../state/functions";
 export class SelectionLogic {
 
   completedTeamCount = 0;
+  isTeamComplete = false;
   civsForComparingCount = 0;
 
   constructor(team1 = [], team2 = [], civsForComparing = [], civForGovernor = '') {
@@ -13,7 +14,12 @@ export class SelectionLogic {
     this.civsForComparing = civsForComparing;
     this.civForGovernor = civForGovernor;
     this.previousSelectedHTMLelement = '';
-    this.paragraph = document.querySelector('.paragraph2');
+    this.paragraph1 = document.querySelector('.paragraph1');
+    this.paragraph2 = document.querySelector('.paragraph2');
+    this.func1Callback = function func1 (event)  {
+      console.log('show team stats');
+      //changeUrl('chartpage');
+    };
     this.func2Callback = function func2 (event)  {
       console.log('now show chart page');
       changeUrl('chartpage');
@@ -26,12 +32,14 @@ export class SelectionLogic {
   }
 
   addToTeam(selectedCiv, maxTeamMembers) {
+  
+    if (this.isTeamComplete === false) {
     this.team1.push(selectedCiv);
     this.completedTeamCount += 1;
     if (this.completedTeamCount >= maxTeamMembers) {
       console.log('completedTeam');
-      //disable all other unselected buttons
-      //start to show go button and then chart
+      this.isTeamComplete = true;
+
       //get team2
       function getTeam2(allCivs, team1Civs) {
         const allCivsModified = allCivs.map((elem) => { 
@@ -42,14 +50,27 @@ export class SelectionLogic {
         return result;
       };
       this.team2 = getTeam2(data.allCivsForTeamSelection, this.team1);
+
+      //start to show go button and then chart
+        this.paragraph1.style.opacity = '0';
+        setTimeout(() => {
+          this.paragraph1.innerHTML = 'Click me to show stats';
+          this.paragraph1.style.color = 'gold';
+          this.paragraph1.style.opacity = '1';
+          this.paragraph1.addEventListener('click',this.func1Callback
+          )
+        }, 400);
+      
     }
      
-    return this.team1, this.team2;
+    //return this.team1, this.team2;
+    }
   }
 
   removeFromTeam(selectedCiv) {
     this.completedTeamCount -= 1;
-    this.team1.pop(selectedCiv);
+    let index = this.team1.indexOf(selectedCiv);
+    this.team1.splice(index, 1);
     return this.team1;
   }
 
@@ -64,12 +85,12 @@ export class SelectionLogic {
     //start to show go button
 
     if (this.civsForComparing.length === 1) {
-      this.paragraph.style.opacity = '0';
+      this.paragraph2.style.opacity = '0';
       setTimeout(() => {
-        this.paragraph.innerHTML = 'Click me to show stats';
-        this.paragraph.style.color = 'gold';
-        this.paragraph.style.opacity = '1';
-        this.paragraph.addEventListener('click', this.func2Callback
+        this.paragraph2.innerHTML = 'Click me to show stats';
+        this.paragraph2.style.color = 'gold';
+        this.paragraph2.style.opacity = '1';
+        this.paragraph2.addEventListener('click', this.func2Callback
         )
       }, 400);
     }
@@ -79,13 +100,13 @@ export class SelectionLogic {
 
   removeFromCivsForComparing(selectedCiv) {
     if (this.civsForComparing.length === 1) {
-      this.paragraph.removeEventListener('click', this.func2Callback
+      this.paragraph2.removeEventListener('click', this.func2Callback
       )
-      this.paragraph.style.opacity = '0';
+      this.paragraph2.style.opacity = '0';
       setTimeout(() => {
-        this.paragraph.innerHTML = 'To see stats of some civs, please, select them';
-        this.paragraph.style.color = '#ffffff';
-        this.paragraph.style.opacity = '1';
+        this.paragraph2.innerHTML = 'To see stats of single civs, please, select them';
+        this.paragraph2.style.color = '#ffffff';
+        this.paragraph2.style.opacity = '1';
       }, 400);
     };
 

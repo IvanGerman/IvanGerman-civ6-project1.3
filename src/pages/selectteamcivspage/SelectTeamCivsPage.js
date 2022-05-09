@@ -7,11 +7,11 @@ const SelectTeamCivsPage = {
     const view = `
       <div class="select-team-civs-div">
         <div class="select-teams selection">
-          <p>To compare stats of team 1 and team 2, please, select civs of team 1 or team 2</p>
+          <p class="paragraph1" >Select civs of team1 or team2 to see team stats</p>
           <div class="civs-wrapper" ></div>
         </div>
         <div class="select-civs selection">
-          <p class="paragraph2" >To see stats of some civs, please, select them</p>
+          <p class="paragraph2" >To see stats of single civs, please, select them</p>
           <div class="civs-wrapper" ></div>
         </div>
         <div class="select-civ-for-governour selection">

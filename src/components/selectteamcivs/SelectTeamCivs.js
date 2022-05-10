@@ -36,6 +36,8 @@ class SelectTeamCivs {
     const allCivs = allCivsWithDoubled.filter((elem) => {
       return !(allCityStates.includes(elem));
     })
+    console.log('this._selectionLogicObj--',this._selectionLogicObj);//undefined
+    //this._selectionLogicObj.civsFromBothTeams = [...allCivs];
     console.log('allCivs-',allCivs);
     return allCivs;
   }

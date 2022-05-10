@@ -18,6 +18,7 @@ export class ChartPageClass {
     this.yAxisTitle = document.querySelector('.kind-of-stat');
     this.getAllStatsForAllCivs(this.allCivs);
     this.getXLabelsValues(this.allCivs);
+    console.log('this.xLabels--', this.xLabels);
     this.getSpecialStat('population');
     //this.getFoodPerTurn2(this.allCivs);
     //this.chartIt();

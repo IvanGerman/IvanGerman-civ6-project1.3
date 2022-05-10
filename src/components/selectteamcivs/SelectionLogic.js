@@ -11,6 +11,7 @@ export class SelectionLogic {
   constructor(team1 = [], team2 = [], civsForComparing = [], civForGovernor = '') {
     this.team1 = team1;
     this.team2 = team2;
+    this.civsFromBothTeams = [];
     this.civsForComparing = civsForComparing;
     this.civForGovernor = civForGovernor;
     this.previousSelectedHTMLelement = '';
@@ -18,7 +19,7 @@ export class SelectionLogic {
     this.paragraph2 = document.querySelector('.paragraph2');
     this.func1Callback = function func1 (event)  {
       console.log('show team stats');
-      //changeUrl('chartpage');
+      changeUrl('chartpage');
     };
     this.func2Callback = function func2 (event)  {
       console.log('now show chart page');
@@ -38,6 +39,10 @@ export class SelectionLogic {
     this.completedTeamCount += 1;
     if (this.completedTeamCount >= maxTeamMembers) {
       console.log('completedTeam');
+      console.log('this.team1--****',this.team1);
+      console.log('this.civsFromBothTeams--',this.civsFromBothTeams);
+      console.log('this.team2--****',this.team2);
+
       this.isTeamComplete = true;
 
       //get team2

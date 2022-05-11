@@ -39,8 +39,12 @@ export class SelectionLogic {
     this.completedTeamCount += 1;
     if (this.completedTeamCount >= maxTeamMembers) {
       console.log('completedTeam');
+      data.setTeamModeIsOn = true;
       console.log('this.team1--****',this.team1);
-      console.log('this.civsFromBothTeams--',this.civsFromBothTeams);
+      data.setTeam1Civs = this.team1;
+      console.log('data.allCivsForTeamSelection--',data.allCivsForTeamSelection);
+      this.team2 = getTeam2(data.allCivsForTeamSelection, this.team1);
+      data.setTeam2Civs = this.team2;
       console.log('this.team2--****',this.team2);
 
       this.isTeamComplete = true;

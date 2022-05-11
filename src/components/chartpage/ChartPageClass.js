@@ -16,8 +16,22 @@ export class ChartPageClass {
   constructor() {
     console.log('allCivs--',this.allCivs);
     this.yAxisTitle = document.querySelector('.kind-of-stat');
-    this.getAllStatsForAllCivs(this.allCivs);
-    this.getXLabelsValues(this.allCivs);
+    if (data.teamModeIsOn === true) {
+      console.log('data.teamModeIsOn--',data.teamModeIsOn);
+      this.allCivs = data.allCivsForTeamSelection;//this.allCivs = both teams
+      this.getAllStatsForAllCivs(this.allCivs);
+      this.getXLabelsValues(this.allCivs);
+      //sum up stats of team1 civs and team2 civs
+      this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
+      //this.allCivs = ['team1', 'team2'];
+      //this.allStatsForAllCivs = summed stats of team1 and 2
+    };
+    if (data.teamModeIsOn === false) {
+      console.log('data.teamModeIsOn--',data.teamModeIsOn);
+      this.getAllStatsForAllCivs(this.allCivs);
+      this.getXLabelsValues(this.allCivs);
+    };
+    
     console.log('this.xLabels--', this.xLabels);
     this.getSpecialStat('population');
     //this.getFoodPerTurn2(this.allCivs);
@@ -165,6 +179,48 @@ export class ChartPageClass {
     this.datasetsArr = this.gettingStatsObj.getStat(this.allCivs, this.allStatsForAllCivs, kindOfStat);
     this.chartIt();
     this.yAxisTitle.innerHTML = kindOfStat;
+  }
+
+  getTeamStats(allStats, team1Civs, team2Civs) {
+    console.log('from getteamstats  allStats--', allStats);
+    console.log(team1Civs);
+    console.log(team2Civs);
+    let teamStats = {
+      ' CIVILIZATION_TEAM1': [{
+        'population': null,
+        'citiesNumber': null,
+        'foodPerTurn': null,
+        'productionPerTurn': null,
+        'sciencePerTurn': null,
+        'culturePerTurn': null,
+        'goldPerTurn': null,
+        'faithPerTurn': null,
+        'tiles': null,
+        'improvedTiles': null,
+        'landUnits': null,
+        'navalUnits': null,
+        'techs': null,
+        'civics': null
+      }],
+      ' CIVILIZATION_TEAM2': [{
+        'population': null,
+        'citiesNumber': null,
+        'foodPerTurn': null,
+        'productionPerTurn': null,
+        'sciencePerTurn': null,
+        'culturePerTurn': null,
+        'goldPerTurn': null,
+        'faithPerTurn': null,
+        'tiles': null,
+        'improvedTiles': null,
+        'landUnits': null,
+        'navalUnits': null,
+        'techs': null,
+        'civics': null
+      }]
+    };
+
+    
   }
 
   addEventListeners(element) {

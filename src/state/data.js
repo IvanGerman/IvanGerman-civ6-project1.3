@@ -2,6 +2,9 @@ export const data = {
   csvRowsToArray: null,
   allCivs: null,
   allCivsForTeamSelection: null,
+  team1Civs: [],
+  team2Civs: [],
+  teamModeIsOn: false,
 
   set setCsvRowsToArray(value) {
     this.csvRowsToArray = value;
@@ -11,6 +14,15 @@ export const data = {
   },
   set setAllCivsForTeamSelection(value) {
     this.allCivsForTeamSelection = value;
+  },
+  set setTeamModeIsOn(value) {
+    this.teamModeIsOn = value;
+  },
+  set setTeam1Civs(value) {
+    this.team1Civs = value;
+  },
+  set setTeam2Civs(value) {
+    this.team2Civs = value;
   }
 };
 

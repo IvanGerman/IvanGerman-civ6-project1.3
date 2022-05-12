@@ -1,6 +1,7 @@
 import { backgroundColorsForChart, data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 import { GettingStats } from "./GettingStats";
+import { GettingTeamStats } from "./GettingTeamStats";
 export class ChartPageClass {
 
   xLabels = [];
@@ -12,6 +13,7 @@ export class ChartPageClass {
   allCivs = data.allCivs;
   specCivArrAllCivs = [];
   gettingStatsObj = new GettingStats();
+  gettingTeamStatsObj = new GettingTeamStats();
 
   constructor() {
     console.log('allCivs--',this.allCivs);
@@ -185,6 +187,9 @@ export class ChartPageClass {
     console.log('from getteamstats  allStats--', allStats);
     console.log(team1Civs);
     console.log(team2Civs);
+    let loopLength = allStats[` CIVILIZATION_${team1Civs[0]}`].length;
+    console.log('loopLength',loopLength);
+    this.gettingTeamStatsObj.getTeamStats(allStats, team1Civs, team2Civs, loopLength);
     let teamStats = {
       ' CIVILIZATION_TEAM1': [{
         'population': null,

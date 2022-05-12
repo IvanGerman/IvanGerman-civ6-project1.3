@@ -24,8 +24,8 @@ export class ChartPageClass {
       this.getAllStatsForAllCivs(this.allCivs);
       this.getXLabelsValues(this.allCivs);
       //sum up stats of team1 civs and team2 civs
-      this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
-      //this.allCivs = ['team1', 'team2'];
+      this.allStatsForAllCivs = this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
+      this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
       //this.allStatsForAllCivs = summed stats of team1 and 2
     };
     if (data.teamModeIsOn === false) {
@@ -189,43 +189,8 @@ export class ChartPageClass {
     console.log(team2Civs);
     let loopLength = allStats[` CIVILIZATION_${team1Civs[0]}`].length;
     console.log('loopLength',loopLength);
-    this.gettingTeamStatsObj.getTeamStats(allStats, team1Civs, team2Civs, loopLength);
-    let teamStats = {
-      ' CIVILIZATION_TEAM1': [{
-        'population': null,
-        'citiesNumber': null,
-        'foodPerTurn': null,
-        'productionPerTurn': null,
-        'sciencePerTurn': null,
-        'culturePerTurn': null,
-        'goldPerTurn': null,
-        'faithPerTurn': null,
-        'tiles': null,
-        'improvedTiles': null,
-        'landUnits': null,
-        'navalUnits': null,
-        'techs': null,
-        'civics': null
-      }],
-      ' CIVILIZATION_TEAM2': [{
-        'population': null,
-        'citiesNumber': null,
-        'foodPerTurn': null,
-        'productionPerTurn': null,
-        'sciencePerTurn': null,
-        'culturePerTurn': null,
-        'goldPerTurn': null,
-        'faithPerTurn': null,
-        'tiles': null,
-        'improvedTiles': null,
-        'landUnits': null,
-        'navalUnits': null,
-        'techs': null,
-        'civics': null
-      }]
-    };
-
-    
+    let teamStats = this.gettingTeamStatsObj.getTeamStats(allStats, team1Civs, team2Civs, loopLength);
+    return teamStats;
   }
 
   addEventListeners(element) {

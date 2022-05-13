@@ -27,6 +27,7 @@ class SelectTeamCivs {
   }
 
   getAllCivs(csvRowsToArray) {
+    //have to prove csv file for case of doubled civs because of remap
     const allCivsWithDoubledRaw = csvRowsToArray.filter((elem) => {
       return elem[0] === '1';
     });

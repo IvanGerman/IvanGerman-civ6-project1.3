@@ -27,19 +27,20 @@ export class ChartPageClass {
       this.allStatsForAllCivs = this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
       this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
       //this.allStatsForAllCivs = summed stats of team1 and 2
+      this.getSpecialStat('population');
+      const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
+      this.addEventListeners(statsButtonsWrapper);
+      data.setTeamModeIsOn = false;
+      return;
     };
     if (data.teamModeIsOn === false) {
       console.log('data.teamModeIsOn--',data.teamModeIsOn);
       this.getAllStatsForAllCivs(this.allCivs);
       this.getXLabelsValues(this.allCivs);
-    };
-    
-    console.log('this.xLabels--', this.xLabels);
-    this.getSpecialStat('population');
-    //this.getFoodPerTurn2(this.allCivs);
-    //this.chartIt();
-    const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
-    this.addEventListeners(statsButtonsWrapper);
+      this.getSpecialStat('population');
+      const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
+      this.addEventListeners(statsButtonsWrapper);
+    }; 
   }   
 
   getDataForOneCiv(civ) {
@@ -86,27 +87,6 @@ export class ChartPageClass {
     for (let i = 0; i < this.allStatsForAllCivs[civs[0]].length; i += 1) {
       this.xLabels.push(i + 1);
     };
-  }
-
-  getFoodPerTurn2(civs) {
-    
-    let datasetsObj = {};
-    let yLabels = [];
-
-    civs.forEach((elem, index) => {
-      for (let i = 0; i < this.allStatsForAllCivs[elem].length; i += 1) {
-        yLabels.push(parseFloat(this.allStatsForAllCivs[elem][i].foodPerTurn));
-      };
-      datasetsObj.label = elem;
-      datasetsObj.data = [...yLabels];
-      yLabels.length = 0;
-      datasetsObj.backgroundColor = backgroundColorsForChart[index];
-      datasetsObj.borderColor = backgroundColorsForChart[index];
-      datasetsObj.borderWidth = 2;
-
-      this.datasetsArr.push({...datasetsObj});
-    })
-      console.log('datasetsArr',this.datasetsArr);
   }
 
   chartIt() {  console.log('datasetsArr',this.datasetsArr);

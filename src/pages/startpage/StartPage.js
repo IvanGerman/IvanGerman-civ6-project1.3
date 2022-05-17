@@ -42,21 +42,45 @@ const StartPage = {
           csvRowsToArray.push(elem.split(','));
         });
         let result;
+
         //checking if there are 2 games stats in this file
-        for (let i = 1; i < csvRowsToArray.length - 2; i += 1) {
-          console.log(csvRowsToArray[i][0]);
+        console.log('csvRowsToArray--',csvRowsToArray);
+        // for (let i = 1; i < csvRowsToArray.length - 2; i += 1) {
+        //   console.log('csvRowsToArray[i][0]--',csvRowsToArray[i][0]);
           
-          if ( Number(csvRowsToArray[i][0]) > Number(csvRowsToArray[i + 1][0]) ) {
+        //   if ( Number(csvRowsToArray[i][0]) > Number(csvRowsToArray[i + 1][0]) ) {
             
-            result = [...csvRowsToArray].slice(i + 1);
-            result.unshift(csvRowsToArray[0]);
+        //     result = [...csvRowsToArray].slice(i + 1);//otrezaem pervie massivi
+        //     result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
+        //     data.setCsvRowsToArray = [...result];
+        //     console.log('data.csvRowsToArray---',data.csvRowsToArray );
+        //     result = [];
+
+        //     changeUrl('selectteamcivs');
+        //     return;
+        //   }
+        // }
+        
+        //checking if there are 2 games stats in this file from end to begin
+        console.log('(csvRowsToArray.length - 2)',(csvRowsToArray.length - 2),typeof((csvRowsToArray.length - 2)));
+
+        for (let i = (csvRowsToArray.length - 2); i > 0; i -= 1) {
+          console.log('csvRowsToArray[i][0]--',csvRowsToArray[i][0]);
+          
+          if ( Number(csvRowsToArray[i][0]) < Number(csvRowsToArray[i - 1][0]) ) {
+            console.log('inside if--',Number(csvRowsToArray[i][0]),'i--',i);
+            result = [...csvRowsToArray].slice(i);//otrezaem poslednie massivi
+            //how to handle case when there was a remap on turn 1?
+            result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
             data.setCsvRowsToArray = [...result];
+            console.log('data.csvRowsToArray---',data.csvRowsToArray );
             result = [];
 
             changeUrl('selectteamcivs');
             return;
           }
         }
+
         result = [...csvRowsToArray];
         data.setCsvRowsToArray = [...result];
         result = [];

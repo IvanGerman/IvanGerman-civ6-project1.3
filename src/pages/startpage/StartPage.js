@@ -8,8 +8,11 @@ const StartPage = {
       <div class="start-page-div">
         <p class="select-file-descr">Select "Player_Stats.csv" file from your</p>
         <p class="select-file-descr red-span">"Computer/Documents/My Games/Sid Meier's Civilization VI/Logs"</p>
-        <p class="select-file-descr">folder</p>
+        <p class="select-file-descr">folder  *</p>
         <input type="file" id="myfile" name="myfile" accept=".csv" placeholder="Player_Stats.csv">
+      </div>
+      <div class="enable-log">
+        <p class="enable-log-p">* If you dont see the file "Player_Stats.csv" in your Logs directory, go to   the file "AppOptions.txt" following the path Computer/Documents/My Games/Sid Meier's Civilization VI/AppOptions.txt , open "AppOptions.txt" (with WordPad, for example), scroll down, until you see the option "Log all game core events." , now change "EnableGameCoreEventLog 0" to   EnableGameCoreEventLog 1"<p>
       </div>
     `;
     return view;
@@ -71,6 +74,7 @@ const StartPage = {
             console.log('inside if--',Number(csvRowsToArray[i][0]),'i--',i);
             result = [...csvRowsToArray].slice(i);//otrezaem poslednie massivi
             //how to handle case when there was a remap on turn 1?
+            //how to handle case when there was a reload 47t crash / reload 46t and played on?
             result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
             data.setCsvRowsToArray = [...result];
             console.log('data.csvRowsToArray---',data.csvRowsToArray );

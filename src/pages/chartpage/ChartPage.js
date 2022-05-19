@@ -25,6 +25,7 @@ const ChartPage = {
       <div class="statsButton" data-button-name="techs">Techs</div>
       <div class="statsButton" data-button-name="civics">Civics</div>
     </div>
+    <div class="remark-to-stats">ffdfdf<div>
     `;
     return view;
   },

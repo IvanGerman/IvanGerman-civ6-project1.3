@@ -27,3 +27,19 @@
   font-size: 16px;
   border-radius: 10px;
 }
+
+.enable-log {
+  position: absolute;
+  left: 25vw;
+  bottom: 5vh;
+  max-width: 50vw;
+  height: 11vh;
+  background-color: rgba(0,0,0,.7);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.enable-log-p {
+  font-size: 18px;
+}

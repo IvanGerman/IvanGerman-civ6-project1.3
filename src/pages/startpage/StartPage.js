@@ -48,21 +48,7 @@ const StartPage = {
 
         //checking if there are 2 games stats in this file
         console.log('csvRowsToArray--',csvRowsToArray);
-        // for (let i = 1; i < csvRowsToArray.length - 2; i += 1) {
-        //   console.log('csvRowsToArray[i][0]--',csvRowsToArray[i][0]);
-          
-        //   if ( Number(csvRowsToArray[i][0]) > Number(csvRowsToArray[i + 1][0]) ) {
-            
-        //     result = [...csvRowsToArray].slice(i + 1);//otrezaem pervie massivi
-        //     result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
-        //     data.setCsvRowsToArray = [...result];
-        //     console.log('data.csvRowsToArray---',data.csvRowsToArray );
-        //     result = [];
-
-        //     changeUrl('selectteamcivs');
-        //     return;
-        //   }
-        // }
+        
         
         //checking if there are 2 games stats in this file from end to begin
         console.log('(csvRowsToArray.length - 2)',(csvRowsToArray.length - 2),typeof((csvRowsToArray.length - 2)));
@@ -71,17 +57,65 @@ const StartPage = {
           console.log('csvRowsToArray[i][0]--',csvRowsToArray[i][0]);
           
           if ( Number(csvRowsToArray[i][0]) < Number(csvRowsToArray[i - 1][0]) ) {
-            console.log('inside if--',Number(csvRowsToArray[i][0]),'i--',i);
-            result = [...csvRowsToArray].slice(i);//otrezaem poslednie massivi
-            //how to handle case when there was a remap on turn 1?
-            //how to handle case when there was a reload 47t crash / reload 46t and played on?
-            result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
-            data.setCsvRowsToArray = [...result];
-            console.log('data.csvRowsToArray---',data.csvRowsToArray );
-            result = [];
+    
+            let edgeArrayElement = csvRowsToArray[i];
+            console.log('edgeArrayElement--',edgeArrayElement);
 
-            changeUrl('selectteamcivs');
-            return;
+            //find sameTurnSequenceLength----------------------------------------------
+            let sameTurnSequenceLength = 1;
+            for (let j = i; j < csvRowsToArray.length - 2; j += 1) {
+              if ( Number(csvRowsToArray[j][0]) !== Number(csvRowsToArray[j + 1][0]) ) {
+                break;
+              };
+              if ( Number(csvRowsToArray[j][0]) === Number(csvRowsToArray[j + 1][0]) ) {
+                sameTurnSequenceLength += 1;
+              };
+            };
+            console.log('sameTurnSequenceLength--',sameTurnSequenceLength);
+            //--------------------------------------------------------------------------
+
+            //compare edgeArrayElement with element with index -sameTurnSequenceLength
+            if ( csvRowsToArray[i][1] === csvRowsToArray[i - sameTurnSequenceLength][1]) {
+              console.log('its reload or remap case');
+
+              //find out which part of csvRowsToArray to delete--------------------------
+              for (let j = i - 1; j > 0; j -= 1) {
+                console.log(csvRowsToArray[j][0]);
+                console.log(csvRowsToArray[j][1]);
+                console.log('--------',j);
+                if (csvRowsToArray[j][0] === csvRowsToArray[i][0] & csvRowsToArray[j][1] === csvRowsToArray[i][1]) {
+                  console.log('first above element to cut index---', j, csvRowsToArray[j]);
+
+                  //here we delete obsolete stats from csvRowsToArray--------------------
+                  result = [...csvRowsToArray];
+                  console.log('result555--',result);
+                  result.splice(j, i - j);
+                  console.log('result after cut---',result);
+                  //---------------------------------------------------------------------
+
+                  //here we need to repeat the whole process using recursion, for the case
+                  //there were many reloads/remaps and there is still a stat from another
+                  //game in the file above
+
+                  break;
+                }
+              }
+
+              //-------------------------------------------------------------------------
+            } else {
+              console.log('its many games in 1 file case');
+              console.log('inside if--',Number(csvRowsToArray[i][0]),'i--',i);
+              result = [...csvRowsToArray].slice(i);//otrezaem poslednie massivi
+              //how to handle case when there was a remap on turn 1?
+              //how to handle case when there was a reload 47t crash / reload 46t and played on?
+              result.unshift(csvRowsToArray[0]);// dobavlaem pervij massiv s imenami kolonok
+              data.setCsvRowsToArray = [...result];
+              console.log('data.csvRowsToArray---',data.csvRowsToArray );
+              result = [];
+
+              changeUrl('selectteamcivs');
+              return;
+            };
           }
         }
 

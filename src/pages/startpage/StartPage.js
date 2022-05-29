@@ -1,3 +1,4 @@
+import { ParseDataClass } from '../../components/startpage/ParseDataClass';
 import { allCityStates, data } from '../../state/data';
 import { changeUrl } from '../../state/functions';
 import './StartPage.scss';
@@ -21,6 +22,7 @@ const StartPage = {
   after_render: () => {
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);
+    const parseDataClassObj = new ParseDataClass();
 
     function handleFiles() {
       const fileList = this.files; /* now you can work with the file list */
@@ -58,6 +60,9 @@ const StartPage = {
           for (let i = (csvArray.length - 2); i > 0; i -= 1) {
             console.log('csvRowsToArray[i][0]--',csvArray[i][0]);
           
+
+
+
             if ( Number(csvArray[i][0]) < Number(csvArray[i - 1][0]) ) {
     
               let edgeArrayElement = csvArray[i];
@@ -103,6 +108,7 @@ const StartPage = {
                     for (let i = (result.length - 2); i > 0; i -= 1) {
                       if ( Number(result[i][0]) < Number(result[i - 1][0]) ) {
                         console.log('there are still stats from another game in file ');
+                        
                       }
                     }
 
@@ -126,18 +132,28 @@ const StartPage = {
                 return;
               };
             }
+
+
+
+
+            
           }
         
         
 
           result = [...csvArray];
           data.setCsvRowsToArray = [...result];
+          console.log('data.csvRowsToArray--',data.csvRowsToArray);
           result = [];
 
           changeUrl('selectteamcivs');
         };
 
         iterateArray(csvRowsToArray);
+
+
+        //--------------ParseDataClass use
+        parseDataClassObj.iterateArray(csvRowsToArray);
 
        };
       }

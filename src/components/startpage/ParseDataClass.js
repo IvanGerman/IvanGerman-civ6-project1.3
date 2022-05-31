@@ -1,3 +1,6 @@
+import { data } from "../../state/data";
+import { changeUrl } from "../../state/functions";
+
 export class ParseDataClass {
 
   sequencesMark = []
@@ -30,19 +33,9 @@ export class ParseDataClass {
             this.sequencesMark.pop();
             this.sequencesMark.push(['reload', i, j - 1]);
             break;
-          } else {
-            // status = 'otherGame';
-            // console.log('its otherGame case  ParseDataClass', i, 'status-',status);
-            // this.sequencesMark.push(['otherGame', i]);
           }
         };
-        // status = 'otherGame';
-        // console.log('its otherGame case  ParseDataClass', i, 'status-',status);
-        // this.sequencesMark.push(['otherGame', i]);
-
-
-
-        
+          
       //--------------------------------------------------------------------------  
       } else { //single game or many reloads/remaps at the same turn
         status = 'singleGame';
@@ -52,22 +45,30 @@ export class ParseDataClass {
     }
     console.log('this.sequencesMark--',this.sequencesMark);
     //here we cut off the unnesserary part of csvArray on the base of this.sequencesMark
-    this.cutOffArrayPart(csvArray);
+    let result = this.cutOffArrayPart(csvArray);
+    data.setCsvRowsToArray = [...result];
+    console.log('data.csvRowsToArray---',data.csvRowsToArray );
+    result = [];
+
+    changeUrl('selectteamcivs');
   }
 
   cutOffArrayPart(csvArray) {
-    //TO CHANGE
-    const newCsvArray = [];
+    const newCsvArray = [...csvArray];
     for (let i = 0; i < this.sequencesMark.length; i += 1) {
       if ( this.sequencesMark[i][0] === 'reload' ) {
-        newCsvArray.push(csvArray.slice(0, this.sequencesMark[i][2]));
-        newCsvArray.push(csvArray.slice(this.sequencesMark[i][1]));
+        newCsvArray.splice( this.sequencesMark[i][2], Number(this.sequencesMark[i][1] - this.sequencesMark[i][2]));
+        console.log('newCsvArray---', i, newCsvArray);
       } 
       if ( this.sequencesMark[i][0] === 'otherGame' ) {
-        console.log('this.sequencesMark[i][0] === ');
+        //just cut off upper part of the array return / go to chart rendering
+        //same with remap
+        newCsvArray.splice( 1, Number(this.sequencesMark[i][1] - 1));
+        console.log('newCsvArray---', i, newCsvArray);
+        return newCsvArray;
       } 
     }
     console.log('cutOffArrayPart(csvArray)newCsvArray--',newCsvArray);
+    return newCsvArray;
   }
 }
-

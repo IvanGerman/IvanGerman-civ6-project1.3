@@ -17,6 +17,8 @@ export class ChartPageClass {
 
   constructor() {
     console.log('allCivs--',this.allCivs);
+    this.team1Civs = document.querySelector('.team1Civs');
+    this.team2Civs = document.querySelector('.team2Civs');
     this.yAxisTitle = document.querySelector('.kind-of-stat');
     if (data.teamModeIsOn === true) {
       console.log('data.teamModeIsOn--',data.teamModeIsOn);
@@ -25,6 +27,8 @@ export class ChartPageClass {
       this.getXLabelsValues(this.allCivs);
       //sum up stats of team1 civs and team2 civs
       this.allStatsForAllCivs = this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
+      this.team1Civs.innerHTML = `TEAM1:   ${data.team1Civs}`;
+      this.team2Civs.innerHTML = `TEAM2:   ${data.team2Civs}`;
       this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
       //this.allStatsForAllCivs = summed stats of team1 and 2
       this.getSpecialStat('population');

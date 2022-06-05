@@ -1,4 +1,5 @@
 import { allCityStates, data } from "../../state/data";
+import { changeUrl } from "../../state/functions";
 import { SelectionLogic } from "./SelectionLogic";
 
 class SelectTeamCivs {
@@ -62,6 +63,15 @@ class SelectTeamCivs {
       switch(event.target.parentElement.className) {
         case 'innerDiv1':
           console.log('innerDiv1');
+          console.log('data.teamModeIsOn----------',data.teamModeIsOn);
+
+          if ( data.isDiv2Selected === true ) {
+            data.setIsDiv2Selected = false;
+            data.setIsDiv1Selected = false;
+            changeUrl('selectteamcivs__');
+            changeUrl('selectteamcivs');
+          }
+          data.setIsDiv1Selected = true;
 
           if (event.target.classList[1] === 'selectedCiv') {
             event.target.classList.remove('selectedCiv');
@@ -92,6 +102,17 @@ class SelectTeamCivs {
 
         case 'innerDiv2':
           console.log('innerDiv2');
+          console.log('data.teamModeIsOn----------',data.teamModeIsOn);
+          data.setTeamModeIsOn = false;
+
+          if ( data.isDiv1Selected === true ) {
+            data.setIsDiv1Selected = false;
+            data.setIsDiv2Selected = false;
+            changeUrl('selectteamcivs__');
+            changeUrl('selectteamcivs');
+          }
+          data.setIsDiv2Selected = true;
+
 
           if (event.target.classList[1] === 'selectedCiv') {
             event.target.classList.remove('selectedCiv');

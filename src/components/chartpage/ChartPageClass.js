@@ -27,6 +27,7 @@ export class ChartPageClass {
       this.getXLabelsValues(this.allCivs);
       //sum up stats of team1 civs and team2 civs
       this.allStatsForAllCivs = this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
+      console.log('this.allStatsForAllCivs-----------',this.allStatsForAllCivs);
       this.team1Civs.innerHTML = `TEAM1:   ${data.team1Civs}`;
       this.team2Civs.innerHTML = `TEAM2:   ${data.team2Civs}`;
       this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];

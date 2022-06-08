@@ -13,11 +13,17 @@ const StartPage = {
       <div class="enable-log">
         <p class="enable-log-p">* If you dont see the file "Player_Stats.csv" in your Logs directory, go to   the file "AppOptions.txt" following the path Computer/Documents/My Games/Sid Meier's Civilization VI/AppOptions.txt , open "AppOptions.txt" (with WordPad, for example), scroll down, until you see the option "Log all game core events." , now change "EnableGameCoreEventLog 0" to   EnableGameCoreEventLog 1"<p>
       </div>
+      <div class="dev-name">
+        2022
+        <a class="github-link" href="https://github.com/IvanGerman" target="_blank">Ivan German</a>
+      </div>
     `;
     return view;
   },
   
   after_render: () => {
+    const selectCivLink = document.querySelector('.sel-civ-li');
+    selectCivLink.style.display = 'none';
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);
     const parseDataClassObj = new ParseDataClass();

@@ -36,6 +36,8 @@ export class ChartPageClass {
       const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
       this.addEventListeners(statsButtonsWrapper);
       data.setTeamModeIsOn = false;
+      const selectCivLink = document.querySelector('.sel-civ-li');
+      selectCivLink.style.display = 'block';
       return;
     };
     if (data.teamModeIsOn === false) {
@@ -46,6 +48,8 @@ export class ChartPageClass {
       const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
       this.addEventListeners(statsButtonsWrapper);
     }; 
+    const selectCivLink = document.querySelector('.sel-civ-li');
+    selectCivLink.style.display = 'block';
   }   
 
   getDataForOneCiv(civ) {

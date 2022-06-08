@@ -64,7 +64,7 @@ export class SelectionLogic {
         this.paragraph1.style.opacity = '0';
         setTimeout(() => {
           this.paragraph1.innerHTML = 'Click me to show stats';
-          this.paragraph1.style.color = 'gold';
+          this.paragraph1.style.color = 'rgb(255, 251, 0)';
           this.paragraph1.style.opacity = '1';
           this.paragraph1.addEventListener('click',this.func1Callback
           )
@@ -97,7 +97,7 @@ export class SelectionLogic {
       this.paragraph2.style.opacity = '0';
       setTimeout(() => {
         this.paragraph2.innerHTML = 'Click me to show stats';
-        this.paragraph2.style.color = 'gold';
+        this.paragraph2.style.color = 'rgb(255, 251, 0)';
         this.paragraph2.style.opacity = '1';
         this.paragraph2.addEventListener('click', this.func2Callback
         )

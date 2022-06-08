@@ -19,7 +19,7 @@
 }
 
 .red-span {
-  color: red;
+  color: rgb(255, 251, 0);
 }
 
 #myfile {
@@ -41,5 +41,15 @@
 }
 
 .enable-log-p {
-  font-size: 18px;
+  font-size: 1vw;
+}
+
+.dev-name {
+  position: absolute;
+  right: 0vw;
+  bottom: 3vh;
+  width: 10vw;
+  height: 4vh;
+  color: #ffffff;
+  font-size: 1vw;
 }

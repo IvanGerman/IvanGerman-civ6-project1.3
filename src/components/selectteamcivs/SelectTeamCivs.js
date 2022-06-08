@@ -11,6 +11,10 @@ class SelectTeamCivs {
     data.setAllCivsForTeamSelection = this.allCivs;
     console.log('data.allCivsForTeamSelection----',data.allCivsForTeamSelection);
     this._selectionLogicObj = new SelectionLogic();
+    const selectCivLink = document.querySelector('.sel-civ-li');
+    selectCivLink.style.display = 'none';
+    data.setIsDiv1Selected = false;
+    data.setIsDiv2Selected = false;
     this.render();
   }
 

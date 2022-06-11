@@ -1,5 +1,4 @@
-import { backgroundColorsForChart, data } from "../../state/data";
-import { changeUrl } from "../../state/functions";
+import { data } from "../../state/data";
 import { GettingStats } from "./GettingStats";
 import { GettingTeamStats } from "./GettingTeamStats";
 export class ChartPageClass {
@@ -16,18 +15,15 @@ export class ChartPageClass {
   gettingTeamStatsObj = new GettingTeamStats();
 
   constructor() {
-    console.log('allCivs--',this.allCivs);
     this.team1Civs = document.querySelector('.team1Civs');
     this.team2Civs = document.querySelector('.team2Civs');
     this.yAxisTitle = document.querySelector('.kind-of-stat');
     if (data.teamModeIsOn === true) {
-      console.log('data.teamModeIsOn--',data.teamModeIsOn);
       this.allCivs = data.allCivsForTeamSelection;//this.allCivs = both teams
       this.getAllStatsForAllCivs(this.allCivs);
       this.getXLabelsValues(this.allCivs);
       //sum up stats of team1 civs and team2 civs
       this.allStatsForAllCivs = this.getTeamStats(this.allStatsForAllCivs, data.team1Civs, data.team2Civs);
-      console.log('this.allStatsForAllCivs-----------',this.allStatsForAllCivs);
       this.team1Civs.innerHTML = `TEAM1:   ${data.team1Civs}`;
       this.team2Civs.innerHTML = `TEAM2:   ${data.team2Civs}`;
       this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
@@ -41,7 +37,6 @@ export class ChartPageClass {
       return;
     };
     if (data.teamModeIsOn === false) {
-      console.log('data.teamModeIsOn--',data.teamModeIsOn);
       this.getAllStatsForAllCivs(this.allCivs);
       this.getXLabelsValues(this.allCivs);
       this.getSpecialStat('population');
@@ -89,7 +84,6 @@ export class ChartPageClass {
       this.allStatsForAllCivs[elem] = result;
       this.allStatsForOneCiv.length = 0;
     })
-    console.log('this.allStatsForAllCivs--',this.allStatsForAllCivs);
   }
 
   getXLabelsValues(civs) {
@@ -98,7 +92,7 @@ export class ChartPageClass {
     };
   }
 
-  chartIt() {  console.log('datasetsArr',this.datasetsArr);
+  chartIt() {  
   
     const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -122,12 +116,10 @@ export class ChartPageClass {
               legend: {
                 display: true,
                 onHover : () => {
-                  console.log('legend hover');
                   const labelCanvas = document.querySelector('.myChart');
                   labelCanvas.style.cursor = 'pointer';
                 },
                 onLeave : () => {
-                  console.log('legend Leave');
                   const labelCanvas = document.querySelector('.myChart');
                   labelCanvas.style.cursor = 'default';
                 },
@@ -173,11 +165,7 @@ export class ChartPageClass {
   }
 
   getTeamStats(allStats, team1Civs, team2Civs) {
-    console.log('from getteamstats  allStats--', allStats);
-    console.log(team1Civs);
-    console.log(team2Civs);
     let loopLength = allStats[` CIVILIZATION_${team1Civs[0]}`].length;
-    console.log('loopLength',loopLength);
     let teamStats = this.gettingTeamStatsObj.getTeamStats(allStats, team1Civs, team2Civs, loopLength);
     return teamStats;
   }

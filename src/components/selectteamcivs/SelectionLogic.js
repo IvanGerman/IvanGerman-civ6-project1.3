@@ -1,4 +1,3 @@
-import ChartPage from "../../pages/chartpage/ChartPage";
 import { data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 
@@ -18,11 +17,9 @@ export class SelectionLogic {
     this.paragraph1 = document.querySelector('.paragraph1');
     this.paragraph2 = document.querySelector('.paragraph2');
     this.func1Callback = function func1 (event)  {
-      console.log('show team stats');
       changeUrl('chartpage');
     };
     this.func2Callback = function func2 (event)  {
-      console.log('now show chart page');
       changeUrl('chartpage');
     };
   }
@@ -38,14 +35,10 @@ export class SelectionLogic {
     this.team1.push(selectedCiv);
     this.completedTeamCount += 1;
     if (this.completedTeamCount >= maxTeamMembers) {
-      console.log('completedTeam');
       data.setTeamModeIsOn = true;
-      console.log('this.team1--****',this.team1);
       data.setTeam1Civs = this.team1;
-      console.log('data.allCivsForTeamSelection--',data.allCivsForTeamSelection);
       this.team2 = getTeam2(data.allCivsForTeamSelection, this.team1);
       data.setTeam2Civs = this.team2;
-      console.log('this.team2--****',this.team2);
 
       this.isTeamComplete = true;
 
@@ -71,8 +64,6 @@ export class SelectionLogic {
         }, 400);
       
     }
-     
-    //return this.team1, this.team2;
     }
   }
 
@@ -88,8 +79,7 @@ export class SelectionLogic {
     this.civsForComparing.push(selectedCiv);
     this.civsForComparingCount += 1;
     if (this.civsForComparingCount >= maxCivsNumber) {
-      console.log('max civs number now');
-      //start to show go button and then chart
+  
     }
     //start to show go button
 
@@ -131,8 +121,6 @@ export class SelectionLogic {
     }
     this.civForGovernor = selectedCiv;
     this.previousSelectedHTMLelement = selectedHTMLelement;
-    
-    console.log('civ selected  this.civForGovernor--',this.civForGovernor);
     //start to show go button and then show governor use
   }
 

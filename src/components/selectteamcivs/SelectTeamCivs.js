@@ -4,12 +4,8 @@ import { SelectionLogic } from "./SelectionLogic";
 
 class SelectTeamCivs {
   constructor() {
-    console.log('SelectTeamCivs');
-    console.log('data.csvRowsToArray-',data.csvRowsToArray);
     this.allCivs = this.getAllCivs(data.csvRowsToArray);
-    //this.allCivs = ['HUNGARY', 'MACEDON', 'MONGOLIA', 'JAPAN', 'HUNGARY1', 'MACEDON1', 'MONGOLIA1', 'JAPAN1', 'HUNGARY2', 'MACEDON2', 'MONGOLIA2', 'JAPAN2'];
     data.setAllCivsForTeamSelection = this.allCivs;
-    console.log('data.allCivsForTeamSelection----',data.allCivsForTeamSelection);
     this._selectionLogicObj = new SelectionLogic();
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'none';
@@ -32,7 +28,6 @@ class SelectTeamCivs {
   }
 
   getAllCivs(csvRowsToArray) {
-    //have to prove csv file for case of doubled civs because of remap
     const allCivsWithDoubledRaw = csvRowsToArray.filter((elem) => {
       return elem[0] === '1';
     });
@@ -43,16 +38,12 @@ class SelectTeamCivs {
     const allCivs = allCivsWithDoubled.filter((elem) => {
       return !(allCityStates.includes(elem));
     })
-    console.log('this._selectionLogicObj--',this._selectionLogicObj);//undefined
-    //this._selectionLogicObj.civsFromBothTeams = [...allCivs];
-    console.log('allCivs-',allCivs);
     return allCivs;
   }
 
 
   createCivsButtons() {
     let civsButtonsBlock = this.allCivs.map(function callback(civ) {
-			
       return	`<div class="single-civ">${civ.substring(14)}</div>`
       }).join('');
     return civsButtonsBlock;
@@ -66,9 +57,7 @@ class SelectTeamCivs {
 
       switch(event.target.parentElement.className) {
         case 'innerDiv1':
-          console.log('innerDiv1');
-          console.log('data.teamModeIsOn----------',data.teamModeIsOn);
-
+  
           if ( data.isDiv2Selected === true ) {
             data.setIsDiv2Selected = false;
             data.setIsDiv1Selected = false;
@@ -93,20 +82,16 @@ class SelectTeamCivs {
             return;
           };
 
-          console.log('this._selectionLogicObj.isTeamComplete--',this._selectionLogicObj.isTeamComplete);
           if (this._selectionLogicObj.isTeamComplete === false) {
             event.target.classList.add('selectedCiv');
 
             this._selectionLogicObj.addToTeam(event.target.innerHTML, this.allCivs.length / 2);
-            console.log('this._selectionLogicObj.team1--',this._selectionLogicObj.team1);
-            console.log('this._selectionLogicObj.team2--',this._selectionLogicObj.team2);
           }
 
           break;
 
         case 'innerDiv2':
-          console.log('innerDiv2');
-          console.log('data.teamModeIsOn----------',data.teamModeIsOn);
+          
           data.setTeamModeIsOn = false;
 
           if ( data.isDiv1Selected === true ) {
@@ -117,7 +102,6 @@ class SelectTeamCivs {
           }
           data.setIsDiv2Selected = true;
 
-
           if (event.target.classList[1] === 'selectedCiv') {
             event.target.classList.remove('selectedCiv');
             this._selectionLogicObj.removeFromCivsForComparing(event.target.innerHTML);
@@ -126,12 +110,10 @@ class SelectTeamCivs {
           event.target.classList.add('selectedCiv');
 
           this._selectionLogicObj.addCivForComparing(` CIVILIZATION_${event.target.innerHTML}`, this.allCivs.length);
-          console.log('this._selectionLogicObj.civsForComparing--',this._selectionLogicObj.civsForComparing);
 
           break;
 
         case 'innerDiv3':
-          console.log('innerDiv3');
 
           if (event.target.classList[1] === 'selectedCiv') {
             event.target.classList.remove('selectedCiv');
@@ -141,13 +123,11 @@ class SelectTeamCivs {
 
           event.target.classList.add('selectedCiv');
           this._selectionLogicObj.selectCivForGovernor(event.target.innerHTML, event.target);
-          console.log('this._selectionLogicObj.civForGovernor--',this._selectionLogicObj.civForGovernor);break;
+          break;
 
         default:
           return;
       }
-      console.log('event.target', event.target);
-      console.log(event.target.parentElement);
     })
   }
 
@@ -164,6 +144,3 @@ class SelectTeamCivs {
 }
 
 export default SelectTeamCivs;
-
-//gaul,basil
-

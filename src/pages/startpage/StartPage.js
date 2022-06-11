@@ -30,10 +30,7 @@ const StartPage = {
 
     function handleFiles() {
       const fileList = this.files; /* now you can work with the file list */
-      console.log(fileList);
-      console.log('fileList[0]--',fileList[0]);
-
-      //  LATER TO UNCOMMENT
+      
       //here we prove the correct file name
       // if (fileList[0].name !== 'Player_Stats.csv') {
       //   alert('wrong file');
@@ -51,13 +48,8 @@ const StartPage = {
           csvRowsToArray.push(elem.split(','));
         });
   
-        console.log('csvRowsToArray--',csvRowsToArray);
         //checking if there are 2 games stats in this file from end to begin
-        console.log('(csvRowsToArray.length - 2)',(csvRowsToArray.length - 2),typeof((csvRowsToArray.length - 2)));
-
-        //--------------ParseDataClass use
         parseDataClassObj.iterateArray(csvRowsToArray);
-
        };
       }
       getDataFromFile();

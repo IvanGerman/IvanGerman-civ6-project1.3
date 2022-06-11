@@ -8,7 +8,6 @@ export const data = {
   isDiv1Selected: false,
   isDiv2Selected: false,
 
-
   set setCsvRowsToArray(value) {
     this.csvRowsToArray = value;
   },

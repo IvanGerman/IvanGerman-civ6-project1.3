@@ -2,12 +2,9 @@ import { backgroundColorsForChart } from "../../state/data";
 
 export class GettingStats {
   getPopulation() {
-    console.log('getPopulation');
   }
 
-
   getStat(civs, allStatsForAllCivs, kindOfStat) {
-    console.log('kindOfStat--', kindOfStat, civs, allStatsForAllCivs);
 
     let datasetsObj = {};
     let yLabels = [];
@@ -26,15 +23,10 @@ export class GettingStats {
 
       arr.push({...datasetsObj});
     })
-      console.log('arr--',arr);
       return arr;
   }
 
-
-
-
   getCities(civs, allStatsForAllCivs) {
-    console.log('getCities', civs, allStatsForAllCivs);
 
     let datasetsObj = {};
     let yLabels = [];
@@ -54,44 +46,6 @@ export class GettingStats {
       // this.datasetsArr.push({...datasetsObj});
       arr.push({...datasetsObj});
     })
-      console.log('arr--',arr);
       return arr;
-  }
-
-  getFood() {
-    console.log('getFood');
-  }
-  getProduction() {
-    console.log('getProduction');
-  }
-  getScience() {
-    console.log('getScience');
-  }
-  getCulture() {
-    console.log('getCulture');
-  }
-  getGold() {
-    console.log('getGold');
-  }
-  getFaith() {
-    console.log('getFaith');
-  }
-  getTiles() {
-    console.log('getTiles');
-  }
-  getImprovedTiles() {
-    console.log('getImprovedTiles');
-  }
-  getLandUnits() {
-    console.log('getLandUnits');
-  }
-  getNavalUnits() {
-    console.log('getNavalUnits');
-  }
-  getTechs() {
-    console.log('getTechs');
-  }
-  getCivics() {
-    console.log('getCivics');
   }
 }

@@ -49,7 +49,6 @@ const StartPage = {
         });
   
         //checking if there are 2 games stats in this file from end to begin
-        console.log('csvRowsToArray-------',csvRowsToArray);
         parseDataClassObj.iterateArray(csvRowsToArray);
        };
       }

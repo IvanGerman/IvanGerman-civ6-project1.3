@@ -5,10 +5,8 @@ import { SelectionLogic } from "./SelectionLogic";
 class SelectTeamCivs {
   constructor() {
     this.allCivs = this.getAllCivs(data.csvRowsToArray);
-    console.log('this.allCivs---',this.allCivs);
     let set = new Set(this.allCivs);
     this.allCivs = Array.from(set);
-    console.log('this.allCivs---',this.allCivs);
 
     data.setAllCivsForTeamSelection = this.allCivs;
     this._selectionLogicObj = new SelectionLogic();

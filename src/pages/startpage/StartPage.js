@@ -33,7 +33,7 @@ const StartPage = {
       
       //here we prove the correct file name
       // if (fileList[0].name !== 'Player_Stats.csv') {
-      //   alert('wrong file');
+      //   alert('wrong file, should be "Player_Stats.csv"');
       //   return;
       // }
 
@@ -49,6 +49,7 @@ const StartPage = {
         });
   
         //checking if there are 2 games stats in this file from end to begin
+        console.log('csvRowsToArray-------',csvRowsToArray);
         parseDataClassObj.iterateArray(csvRowsToArray);
        };
       }

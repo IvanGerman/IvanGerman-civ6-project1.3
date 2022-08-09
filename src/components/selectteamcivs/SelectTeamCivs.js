@@ -8,7 +8,7 @@ class SelectTeamCivs {
     let set = new Set(this.allCivs);
     this.allCivs = Array.from(set);
 
-    data.setAllCivsForTeamSelection = this.allCivs;
+    data.setAllCivsForTeamSelection = this.allCivs;  console.log('this.allCivs--',this.allCivs);
     this._selectionLogicObj = new SelectionLogic();
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'none';

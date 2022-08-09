@@ -47,7 +47,8 @@ const StartPage = {
         rows.forEach((elem) => {
           csvRowsToArray.push(elem.split(','));
         });
-  
+       console.log('csvRowsToArray--',csvRowsToArray);
+       parseDataClassObj.extractDataLevel1(csvRowsToArray);
         //checking if there are 2 games stats in this file from end to begin
         parseDataClassObj.iterateArray(csvRowsToArray);
        };

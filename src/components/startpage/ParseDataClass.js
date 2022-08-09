@@ -27,7 +27,7 @@ export class ParseDataClass {
             isMore1turnGames = true;
           }
         }
-      };
+      };       
 
 
       if ( isMore1turnGames === true  ) {
@@ -64,7 +64,7 @@ export class ParseDataClass {
       } else { //single game or many reloads/remaps at the same turn
         
       };
-    }
+    }     console.log('allCivsTurn1--',allCivsTurn1);
 
 
     //here we cut off the unnesserary part of csvArray on the base of this.sequencesMark
@@ -90,4 +90,55 @@ export class ParseDataClass {
     }
     return newCsvArray;
   }
+
+  // extractDataLevel1 extracts data of the last played game(cutting off all previous data from csvArray)
+  extractDataLevel1(csvArray) { 
+    let extractedData1;
+    for (let i = (csvArray.length - 2); i > 0; i -= 1) {
+      if (csvArray[i][0] === '1') {
+        //console.log('csvArray[i]',csvArray[i]);
+        if (csvArray[i - 1][0] !== '1') {
+          console.log('csvArray[i - 1]',csvArray[i - 1], 'index from where to cut(including) is: ',i);
+          extractedData1 = [...csvArray];
+          extractedData1.splice(0, i);
+          console.log('extractedData1--',extractedData1);
+          this.extractDataLevel2(extractedData1);
+          return extractedData1;
+        }
+      }
+    }
+  }
+
+  // extractDataLevel2 checks extractedData1 of possibility having 2 different games at turn 1 (first game was scraped at turn 1, second game was started after that, so we have to delete data of the first game to avoid getting civs from both games)
+  extractDataLevel2(extractedData1) {
+    let freeCitiesOccurCount = 0;
+    for (let i = 0; i < extractedData1.length; i += 1) {
+
+      if ( extractedData1[i][0] === '1' && extractedData1[i][1] === ' CIVILIZATION_FREE_CITIES' ) {
+        freeCitiesOccurCount += 1;
+        if ( freeCitiesOccurCount > 1 ) {
+          console.log('2 civs turn 1');
+          let turn2CivIndexes = [];
+          let turn2Civs = extractedData1.filter( (elem, index) => { 
+            if (elem[0] === '2') {
+              turn2CivIndexes.push(index);
+            }
+            return elem[0] === '2';
+          });
+          console.log('turn2Civs--',turn2Civs);
+          console.log('turn2CivIndex--',turn2CivIndexes[0]);
+          let extractedData2 = extractedData1.slice( (turn2CivIndexes[0] - turn2Civs.length), (extractedData1.length - 1) );
+          console.log('extractedData2---',extractedData2);
+          return extractedData2
+        }  
+      };
+    
+      if ( extractedData1[i][0] === '2' ) {
+        console.log('all good, just 1 civ turn 1');
+        return extractedData1;
+      };
+
+    }
+  }
 }
+

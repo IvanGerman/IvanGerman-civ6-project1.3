@@ -4,6 +4,7 @@ import { changeUrl } from "../../state/functions";
 export class ParseDataClass {
 
   sequencesMark = []
+  sequencesMark2 = []
 
   iterateArray(csvArray) {
 
@@ -93,7 +94,10 @@ export class ParseDataClass {
 
   // extractDataLevel1 extracts data of the last played game(cutting off all previous data from csvArray)
   extractDataLevel1(csvArray) { 
+
     let extractedData1;
+    let extractedData2;
+
     for (let i = (csvArray.length - 2); i > 0; i -= 1) {
       if (csvArray[i][0] === '1') {
         //console.log('csvArray[i]',csvArray[i]);
@@ -101,9 +105,9 @@ export class ParseDataClass {
           console.log('csvArray[i - 1]',csvArray[i - 1], 'index from where to cut(including) is: ',i);
           extractedData1 = [...csvArray];
           extractedData1.splice(0, i);
-          console.log('extractedData1--',extractedData1);
-          this.extractDataLevel2(extractedData1);
-          return extractedData1;
+          extractedData2 = this.extractDataLevel2(extractedData1);
+          console.log('extractedData2--',extractedData2);
+          return extractedData2;
         }
       }
     }
@@ -128,17 +132,66 @@ export class ParseDataClass {
           console.log('turn2Civs--',turn2Civs);
           console.log('turn2CivIndex--',turn2CivIndexes[0]);
           let extractedData2 = extractedData1.slice( (turn2CivIndexes[0] - turn2Civs.length), (extractedData1.length - 1) );
-          console.log('extractedData2---',extractedData2);
+          //console.log('extractedData2---',extractedData2);
           return extractedData2
         }  
       };
     
       if ( extractedData1[i][0] === '2' ) {
         console.log('all good, just 1 civ turn 1');
+        extractedData1.pop();
         return extractedData1;
       };
 
     }
   }
+
+  // extractDataLevel3 remove data from extractedData2-array, which are there because of previously turns reloads, for example played till turn 65, then reload turn 64 and played on)
+  extractDataLevel3(extractedData2) { 
+    
+    for (let i = (extractedData2.length - 1); i > 0; i -= 1) {
+      if (Number(extractedData2[i][0]) < Number(extractedData2[i - 1][0])) {
+        let lastIndex = i;
+        let firstIndex = 0;
+        console.log('reload case, index till where to cut(not including)--', i );
+        for ( let j = ( i - 1); j > 0; j -= 1) {
+          if (Number(extractedData2[i][0]) === Number(extractedData2[j][0])) {
+            console.log('reload case, index from where to cut(including)--', j + 1,);
+            firstIndex = ( j + 1 );
+            this.sequencesMark2.push( [ firstIndex, lastIndex] );
+            break;
+          }
+        }
+      }
+    }
+
+    console.log('this.sequencesMark2---',this.sequencesMark2);
+    //here we cut off the unnesserary part of csvArray on the base of this.sequencesMark2
+    const extractedData3 = [...extractedData2];
+    for (let i = 0; i < this.sequencesMark2.length; i += 1) {
+      extractedData3.splice( this.sequencesMark2[i][0], Number(this.sequencesMark2[i][1] - this.sequencesMark2[i][0]));
+    }
+    console.log('extractedData3---',extractedData3);
+    return extractedData3;
+  }
+
+
+  // extractDataLevel4 removes double data from extractedData3-array, when there are repeating stats under same turn number, for example turn 64 stats are shown in the csv-file 2 times)
+  extractDataLevel4(extractedData3) {
+    let freeCitiesOccurCount = 0;
+    let previousTurn = 1;
+    for (let i = 0; i < extractedData3.length; i += 1) {
+      //let currentTurn = extractedData3[i][0];
+      if ( extractedData3[i][1] === ' CIVILIZATION_FREE_CITIES' ) {
+        freeCitiesOccurCount += 1;
+        if ( freeCitiesOccurCount > 1 && extractedData3[i][0] === previousTurn) {
+          console.log('repeated data', 'turn number--', extractedData3[i][0]);
+          
+        };
+          
+      };
+    }
+  }
+
 }
 

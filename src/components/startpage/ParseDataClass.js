@@ -167,30 +167,48 @@ export class ParseDataClass {
 
     console.log('this.sequencesMark2---',this.sequencesMark2);
     //here we cut off the unnesserary part of csvArray on the base of this.sequencesMark2
-    const extractedData3 = [...extractedData2];
+    let extractedData3 = [...extractedData2];
     for (let i = 0; i < this.sequencesMark2.length; i += 1) {
       extractedData3.splice( this.sequencesMark2[i][0], Number(this.sequencesMark2[i][1] - this.sequencesMark2[i][0]));
     }
-    console.log('extractedData3---',extractedData3);
+    
+
+    extractedData3 = this.extractDataLevel4(extractedData3);
+
+    console.log('extractedData3 after extractDataLevel4---',extractedData3);
     return extractedData3;
   }
 
 
   // extractDataLevel4 removes double data from extractedData3-array, when there are repeating stats under same turn number, for example turn 64 stats are shown in the csv-file 2 times)
   extractDataLevel4(extractedData3) {
-    let freeCitiesOccurCount = 0;
-    let previousTurn = 1;
-    for (let i = 0; i < extractedData3.length; i += 1) {
-      //let currentTurn = extractedData3[i][0];
-      if ( extractedData3[i][1] === ' CIVILIZATION_FREE_CITIES' ) {
-        freeCitiesOccurCount += 1;
-        if ( freeCitiesOccurCount > 1 && extractedData3[i][0] === previousTurn) {
-          console.log('repeated data', 'turn number--', extractedData3[i][0]);
-          
-        };
-          
+
+    let mainArray = [];
+    let subArray = [];
+    for ( let i = 0; i < ( Number(extractedData3[extractedData3.length - 1][0]) ); i += 1) {
+      subArray = extractedData3.filter( (elem) => { 
+          return Number(elem[0]) === Number(i + 1);
+        }
+      );
+      mainArray.push([...subArray]);
+      subArray.length = 0;
+    };
+
+    for ( let i = 0; i < mainArray.length; i += 1) {
+      let freeCitiesOccurCount = 0;
+      for (let j = 0; j < mainArray[i].length; j += 1) {
+        if ( mainArray[i][j][1] === ' CIVILIZATION_FREE_CITIES' ) {
+          freeCitiesOccurCount += 1;
+        }
       };
+      if (freeCitiesOccurCount > 1) { 
+        mainArray[i] = mainArray[i].slice(0, ( mainArray[i].length / freeCitiesOccurCount ))
+      }
     }
+    
+    mainArray = Array.prototype.concat.apply([], mainArray);
+    //console.log('mainArray without doubled data---',mainArray);
+    return mainArray;
   }
 
 }

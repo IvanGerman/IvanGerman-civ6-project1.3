@@ -1,4 +1,4 @@
-import { data } from "../../state/data";
+import { allCityStates, data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 
 export class ParseDataClass {
@@ -208,8 +208,34 @@ export class ParseDataClass {
     
     mainArray = Array.prototype.concat.apply([], mainArray);
     //console.log('mainArray without doubled data---',mainArray);
+    this.extractDataLevel5(mainArray);
     return mainArray;
   }
 
+
+  // extractDataLevel5 checks extractedData4 for killed civs and adds to extractedData4 stats of those killed civs with the values of 0 for every parameter
+  extractDataLevel5(extractedData4) {
+    let mainArray = [];
+    let subArray = [];
+    for ( let i = 0; i < ( Number(extractedData4[extractedData4.length - 1][0]) ); i += 1) {
+      subArray = extractedData4.filter( (elem) => { 
+          return Number(elem[0]) === Number(i + 1);
+        }
+      );
+      mainArray.push([...subArray]);
+      subArray.length = 0;
+    };
+    console.log('mainArray  extractDataLevel5---',mainArray);
+
+    //remove city states
+
+    mainArray = Array.prototype.concat.apply([], mainArray);
+
+    let allCivs = mainArray.filter((elem) => {
+      return !(allCityStates.includes(elem[1]));
+    });
+    console.log('allCivs  extractDataLevel5---',allCivs);
+
+  }
 }
 

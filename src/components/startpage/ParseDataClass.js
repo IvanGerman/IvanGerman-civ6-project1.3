@@ -215,16 +215,19 @@ export class ParseDataClass {
 
   // extractDataLevel5 checks extractedData4 for killed civs and adds to extractedData4 stats of those killed civs with the values of 0 for every parameter
   extractDataLevel5(extractedData4) {
-    let mainArray = [];
-    let subArray = [];
-    for ( let i = 0; i < ( Number(extractedData4[extractedData4.length - 1][0]) ); i += 1) {
-      subArray = extractedData4.filter( (elem) => { 
-          return Number(elem[0]) === Number(i + 1);
-        }
-      );
-      mainArray.push([...subArray]);
-      subArray.length = 0;
-    };
+  
+    let mainArray = this.convertToTurnsArray(extractedData4);
+
+    // let subArray = [];
+    // for ( let i = 0; i < ( Number(extractedData4[extractedData4.length - 1][0]) ); i += 1) {
+    //   subArray = extractedData4.filter( (elem) => { 
+    //       return Number(elem[0]) === Number(i + 1);
+    //     }
+    //   );
+    //   mainArray.push([...subArray]);
+    //   subArray.length = 0;
+    // };
+
     console.log('mainArray  extractDataLevel5---',mainArray);
 
     //remove city states
@@ -235,7 +238,49 @@ export class ParseDataClass {
       return !(allCityStates.includes(elem[1]));
     });
     console.log('allCivs  extractDataLevel5---',allCivs);
+  
+    //convert into "array of turns"
+    let allCivsByTurns = this.convertToTurnsArray(allCivs);
+    console.log('allCivsByTurns  extractDataLevel5---',allCivsByTurns);
 
+    //check which civs (if any) were killed during the game
+    let killedCivs = [];
+    let civsFromFirstTurn = allCivsByTurns[0];
+    let civsFromLastTurn = allCivsByTurns[allCivsByTurns.length - 1];
+
+    for ( let i = 0; i < civsFromFirstTurn.length; i += 1 ) { 
+      let currentCiv = civsFromFirstTurn[i][1];
+      let wasCivKilled = true;
+      for ( let j = 0; j < (civsFromLastTurn.length); j += 1 ) {
+        if (civsFromLastTurn[j].includes(currentCiv)) {
+          wasCivKilled = false;     
+        }
+      };
+      if (wasCivKilled === true) {
+        killedCivs.push(currentCiv);
+        console.log('this civs were killed---', killedCivs);
+      }
+    };
+
+    //find out turn by which civs were killed
+
+
+  }
+
+
+  //convertToTurnsArray converts the "normal" to array ordered by turn numbers
+  convertToTurnsArray(startArray) {
+    let endArray = [];
+    let subArray = [];
+    for ( let i = 0; i < ( Number(startArray[startArray.length - 1][0]) ); i += 1) {
+      subArray = startArray.filter( (elem) => { 
+          return Number(elem[0]) === Number(i + 1);
+        }
+      );
+      endArray.push([...subArray]);
+      subArray.length = 0;
+    };
+    return endArray;
   }
 }
 

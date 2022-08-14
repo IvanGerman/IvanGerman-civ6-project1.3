@@ -49,7 +49,8 @@ const StartPage = {
         });
        console.log('csvRowsToArray--',csvRowsToArray);
        let result = parseDataClassObj.extractDataLevel1(csvRowsToArray);
-       parseDataClassObj.extractDataLevel3(result);
+       let civsDataReady = parseDataClassObj.extractDataLevel3(result);
+       console.log('civsDataReady',civsDataReady);
         //checking if there are 2 games stats in this file from end to begin
         parseDataClassObj.iterateArray(csvRowsToArray);
        };

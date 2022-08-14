@@ -208,8 +208,8 @@ export class ParseDataClass {
     
     mainArray = Array.prototype.concat.apply([], mainArray);
     //console.log('mainArray without doubled data---',mainArray);
-    this.extractDataLevel5(mainArray);
-    return mainArray;
+    let result = this.extractDataLevel5(mainArray);
+    return result;
   }
 
 
@@ -217,16 +217,6 @@ export class ParseDataClass {
   extractDataLevel5(extractedData4) {
   
     let mainArray = this.convertToTurnsArray(extractedData4);
-
-    // let subArray = [];
-    // for ( let i = 0; i < ( Number(extractedData4[extractedData4.length - 1][0]) ); i += 1) {
-    //   subArray = extractedData4.filter( (elem) => { 
-    //       return Number(elem[0]) === Number(i + 1);
-    //     }
-    //   );
-    //   mainArray.push([...subArray]);
-    //   subArray.length = 0;
-    // };
 
     console.log('mainArray  extractDataLevel5---',mainArray);
 
@@ -263,8 +253,29 @@ export class ParseDataClass {
     };
 
     //find out turn by which civs were killed
-
-
+    if (killedCivs.length !== 0) {
+      for ( let n = 0; n < killedCivs.length; n += 1) {
+        console.log('find the turn of dead');
+        for ( let i = 0; i < allCivsByTurns.length; i += 1 ) {
+          let isCivDead = true;
+          for ( let j = 0; j < allCivsByTurns[i].length; j += 1) {
+            if (allCivsByTurns[i][j].includes(killedCivs[n])) {
+              isCivDead = false;
+              break;
+            };
+          }
+          if ( isCivDead === true ) {
+            console.log('turn by which civ was killed---', i + 1, 'index in array--', i);
+            // here we paste killed civ 0 value data to every array beginning with array with index i
+            this.pasteZeroData(killedCivs[n], i, allCivsByTurns);
+            console.log('allCivsByTurns after pasteZeroData---',allCivsByTurns);
+            break;
+          }
+        };
+      };
+    }
+    allCivsByTurns = Array.prototype.concat.apply([], allCivsByTurns);
+    return allCivsByTurns;
   }
 
 
@@ -282,5 +293,15 @@ export class ParseDataClass {
     };
     return endArray;
   }
+
+  pasteZeroData(civ, index, array) {
+    
+    for ( let i = index; i < array.length; i += 1 ) {
+      let dataArray = [String(i + 1), civ, ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0', ' 0'];
+      array[i].push(dataArray);
+    }
+    
+  }
+
 }
 

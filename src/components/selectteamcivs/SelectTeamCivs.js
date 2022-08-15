@@ -1,13 +1,10 @@
-import { allCityStates, data } from "../../state/data";
+import { data } from "../../state/data";
 import { changeUrl } from "../../state/functions";
 import { SelectionLogic } from "./SelectionLogic";
 
 class SelectTeamCivs {
   constructor() {
-    // this.allCivs = this.getAllCivs(data.csvRowsToArray);
-    // let set = new Set(this.allCivs);
-    // this.allCivs = Array.from(set);
-    // console.log('selectteamcivs.js this.allCivs--',this.allCivs);
+    
     this.allCivs = data.allCivsArrays;
 
     data.setAllCivsForTeamSelection = this.allCivs;  console.log('this.allCivs--',this.allCivs);
@@ -31,21 +28,6 @@ class SelectTeamCivs {
       this.addEventList(element);
     }
   }
-
-  getAllCivs(csvRowsToArray) {
-    const allCivsWithDoubledRaw = csvRowsToArray.filter((elem) => {
-      return elem[0] === '1';
-    });
-    const allCivsWithDoubled = [];
-    allCivsWithDoubledRaw.forEach((elem) => {
-      allCivsWithDoubled.push(elem[1]);
-    });
-    const allCivs = allCivsWithDoubled.filter((elem) => {
-      return !(allCityStates.includes(elem));
-    })
-    return allCivs;
-  }
-
 
   createCivsButtons() {
     let civsButtonsBlock = this.allCivs.map(function callback(civ) {
@@ -134,17 +116,6 @@ class SelectTeamCivs {
           return;
       }
     })
-  }
-
-  createCivsArray(addCivFuncBody, removeCivFuncBody) {
-    if (event.target.classList[1] === 'selectedCiv') {
-      event.target.classList.remove('selectedCiv');
-      this._selectionLogicObj.removeFromTeam(event.target.innerHTML);
-      return;
-    };
-    event.target.classList.add('selectedCiv');
-
-    this._selectionLogicObj.addToTeam(event.target.innerHTML, this.allCivs.length / 2);
   }
 }
 

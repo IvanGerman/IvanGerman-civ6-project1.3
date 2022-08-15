@@ -42,18 +42,14 @@ const StartPage = {
         let reader = new FileReader();
         await reader.readAsText(fileList[0]);
         reader.onload = async () => {
-        const rows = await reader.result.split('\n');
-        const csvRowsToArray = [];
-        rows.forEach((elem) => {
-          csvRowsToArray.push(elem.split(','));
-        });
-       console.log('csvRowsToArray--',csvRowsToArray);
-       let result = parseDataClassObj.extractDataLevel1(csvRowsToArray);
-       let civsDataReady = parseDataClassObj.extractDataLevel3(result);
-       console.log('civsDataReady',civsDataReady);
-        //checking if there are 2 games stats in this file from end to begin
-        parseDataClassObj.iterateArray(csvRowsToArray);
-       };
+          const rows = await reader.result.split('\n');
+          const csvRowsToArray = [];
+          rows.forEach((elem) => {
+            csvRowsToArray.push(elem.split(','));
+          });
+          console.log('csvRowsToArray--',csvRowsToArray);
+          parseDataClassObj.extractDataLevel1(csvRowsToArray);
+        };
       }
       getDataFromFile();
       

@@ -1,5 +1,0 @@
-1. the case, when a player dc-d, then restarted the game and played on. in this case his csv-file will have only stats from the turn he dc-d till the end (for example 30 till 35)
-
-2. the case, when there are two similar/doubled civs, for example 2 greeces
-
-3. the case, when one of the civs was killed in the game, in this case stats from this civ disappear in the csv-file from the turn of killing

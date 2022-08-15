@@ -1,0 +1,26 @@
+Turn, Event, Origin City, Destination City, Attached Resource, Origin Yields
+23, Route Started, LOC_CITY_NAME_BUDA, LOC_CITY_NAME_OSAKA,Resource -1 (x0),Origin Yields,0.00,0.00,3.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+23, Route Started, LOC_CITY_NAME_QARAQORUM, LOC_CITY_NAME_CAHOKIA,Resource -1 (x0),Origin Yields,0.00,0.00,3.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+26, Route Started, LOC_CITY_NAME_NAGOYA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,1.00,1.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+33, Route Started, LOC_CITY_NAME_PELLA, LOC_CITY_NAME_DION,Resource -1 (x0),Origin Yields,1.00,1.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+35, Route Started, LOC_CITY_NAME_CAHOKIA, LOC_CITY_NAME_URUMQI,Resource -1 (x0),Origin Yields,0.00,0.00,3.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+40, Route Ended (Expired), LOC_CITY_NAME_BUDA, LOC_CITY_NAME_OSAKA,Resource -1 (x0),Origin Yields,0.00,0.00,7.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+40, Route Ended (Expired), LOC_CITY_NAME_QARAQORUM, LOC_CITY_NAME_CAHOKIA,Resource -1 (x0),Origin Yields,0.00,0.00,4.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+41, Route Started, LOC_CITY_NAME_BUDA, LOC_CITY_NAME_GYOR,Resource -1 (x0),Origin Yields,2.00,2.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+41, Route Ended (City Destroyed), LOC_CITY_NAME_CAHOKIA, LOC_CITY_NAME_URUMQI,Resource -1 (x0),Origin Yields,0.00,0.00,5.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+41, Route Started, LOC_CITY_NAME_QARAQORUM, LOC_CITY_NAME_URUMQI,Resource -1 (x0),Origin Yields,2.00,2.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+41, Route Ended (Expired), LOC_CITY_NAME_NAGOYA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,5.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+42, Route Started, LOC_CITY_NAME_NAGOYA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,5.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+44, Route Started, LOC_CITY_NAME_OSAKA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,5.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+48, Route Ended (Expired), LOC_CITY_NAME_PELLA, LOC_CITY_NAME_DION,Resource -1 (x0),Origin Yields,2.00,1.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+49, Route Started, LOC_CITY_NAME_PELLA, LOC_CITY_NAME_CAHOKIA,Resource -1 (x0),Origin Yields,1.00,1.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+50, Route Started, LOC_CITY_NAME_PEST, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,6.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+56, Route Ended (Expired), LOC_CITY_NAME_BUDA, LOC_CITY_NAME_GYOR,Resource -1 (x0),Origin Yields,2.00,2.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+56, Route Ended (Expired), LOC_CITY_NAME_QARAQORUM, LOC_CITY_NAME_URUMQI,Resource -1 (x0),Origin Yields,2.00,2.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+57, Route Started, LOC_CITY_NAME_BUDA, LOC_CITY_NAME_RAPA_NUI,Resource -1 (x0),Origin Yields,0.00,0.00,6.00,0.00,1.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+57, Route Started, LOC_CITY_NAME_QARAQORUM, LOC_CITY_NAME_ULAANBAATAR,Resource -1 (x0),Origin Yields,1.00,1.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+57, Route Ended (Plundered), LOC_CITY_NAME_BUDA, LOC_CITY_NAME_RAPA_NUI,Resource -1 (x0),Origin Yields,0.00,0.00,6.00,0.00,1.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+57, Route Ended (Expired), LOC_CITY_NAME_NAGOYA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,6.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+58, Route Started, LOC_CITY_NAME_NAGOYA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,6.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+59, Route Ended (Expired), LOC_CITY_NAME_OSAKA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,6.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00
+60, Route Started, LOC_CITY_NAME_OSAKA, LOC_CITY_NAME_KYOTO,Resource -1 (x0),Origin Yields,4.00,6.00,0.00,0.00,0.00,0.00,Destination Yields,0.00,0.00,0.00,0.00,0.00,0.00

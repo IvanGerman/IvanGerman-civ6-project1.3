@@ -4,9 +4,11 @@ import { SelectionLogic } from "./SelectionLogic";
 
 class SelectTeamCivs {
   constructor() {
-    this.allCivs = this.getAllCivs(data.csvRowsToArray);
-    let set = new Set(this.allCivs);
-    this.allCivs = Array.from(set);
+    // this.allCivs = this.getAllCivs(data.csvRowsToArray);
+    // let set = new Set(this.allCivs);
+    // this.allCivs = Array.from(set);
+    // console.log('selectteamcivs.js this.allCivs--',this.allCivs);
+    this.allCivs = data.allCivsArrays;
 
     data.setAllCivsForTeamSelection = this.allCivs;  console.log('this.allCivs--',this.allCivs);
     this._selectionLogicObj = new SelectionLogic();

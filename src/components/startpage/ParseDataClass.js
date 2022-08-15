@@ -42,7 +42,7 @@ export class ParseDataClass {
 
           this.sequencesMark.push(['otherGame', i]);
           let result = this.cutOffArrayPart(csvArray);
-          data.setCsvRowsToArray = [...result];
+          //data.setCsvRowsToArray = [...result];
           result = [];
 
           changeUrl('selectteamcivs');
@@ -70,7 +70,8 @@ export class ParseDataClass {
 
     //here we cut off the unnesserary part of csvArray on the base of this.sequencesMark
     let result = this.cutOffArrayPart(csvArray);
-    data.setCsvRowsToArray = [...result];
+    console.log('result73',result);
+    //data.setCsvRowsToArray = [...result];
     result = [];
 
     changeUrl('selectteamcivs');
@@ -91,6 +92,14 @@ export class ParseDataClass {
     }
     return newCsvArray;
   }
+
+
+
+
+
+
+
+
 
   // extractDataLevel1 extracts data of the last played game(cutting off all previous data from csvArray)
   extractDataLevel1(csvArray) { 
@@ -274,7 +283,16 @@ export class ParseDataClass {
         };
       };
     }
+    // get all civs
+    let allCivsFromArray = [];
+    for ( let i = 0; i < allCivsByTurns[0].length; i += 1) {
+      allCivsFromArray.push(allCivsByTurns[0][i][1]);
+    } ;
+    console.log('allCivsFromArray--',allCivsFromArray);
+    data.setAllCivsArrays = allCivsFromArray;
+
     allCivsByTurns = Array.prototype.concat.apply([], allCivsByTurns);
+    data.setCsvRowsToArray = [...allCivsByTurns];
     return allCivsByTurns;
   }
 

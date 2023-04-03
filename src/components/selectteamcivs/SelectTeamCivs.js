@@ -11,6 +11,8 @@ class SelectTeamCivs {
     this._selectionLogicObj = new SelectionLogic();
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'none';
+    const pieChartsLink = document.querySelector('.pie-charts-li');
+    pieChartsLink.style.display = 'none';
     data.setIsDiv1Selected = false;
     data.setIsDiv2Selected = false;
     this.render();

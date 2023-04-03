@@ -1,12 +1,14 @@
 import StartPage from './pages/startpage/StartPage';
 import SelectTeamCivs from './pages/selectteamcivspage/SelectTeamCivsPage';
 import ChartPage from './pages/chartpage/ChartPage';
+import PieChartsPage from './pages/pieChartsPage/PieChartsPage';
 import Utils from './utils/Utils';
 
 const routes = {
   '/': StartPage ,
   '/selectteamcivs': SelectTeamCivs ,
   '/chartpage': ChartPage ,
+  '/piecharts': PieChartsPage ,
 };
 
 const router = async () => {

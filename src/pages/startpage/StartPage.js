@@ -24,6 +24,9 @@ const StartPage = {
   after_render: () => {
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'none';
+    const pieChartsLink = document.querySelector('.pie-charts-li');
+    pieChartsLink.style.display = 'none';
+    
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);
     const parseDataClassObj = new ParseDataClass();
@@ -32,10 +35,10 @@ const StartPage = {
       const fileList = this.files; /* now you can work with the file list */
       
       //here we prove the correct file name
-      // if (fileList[0].name !== 'Player_Stats.csv') {
-      //   alert('wrong file, should be "Player_Stats.csv"');
-      //   return;
-      // }
+      if (fileList[0].name !== 'Player_Stats.csv') {
+        alert('wrong file, should be "Player_Stats.csv"');
+        //return;
+      }
 
       //asynchronous action
       async function getDataFromFile () {

@@ -34,6 +34,8 @@ export class ChartPageClass {
       data.setTeamModeIsOn = false;
       const selectCivLink = document.querySelector('.sel-civ-li');
       selectCivLink.style.display = 'block';
+      const pieChartsLink = document.querySelector('.pie-charts-li');
+      pieChartsLink.style.display = 'block';
       return;
     };
     if (data.teamModeIsOn === false) {
@@ -45,6 +47,8 @@ export class ChartPageClass {
     }; 
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'block';
+    const pieChartsLink = document.querySelector('.pie-charts-li');
+    pieChartsLink.style.display = 'block';
   }   
 
   getDataForOneCiv(civ) {

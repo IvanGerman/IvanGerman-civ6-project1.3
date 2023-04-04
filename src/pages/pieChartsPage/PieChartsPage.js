@@ -1,4 +1,4 @@
-//import { ChartPageClass } from '../../components/chartpage/ChartPageClass';
+import { PieChartsPageClass } from '../../components/piechartpage/PieChartsPageClass';
 import './PieChartsPage.scss';
 
 const PieChartsPage = {
@@ -6,7 +6,7 @@ const PieChartsPage = {
     const view = `
     <div class="pieChartsPageWrapper">
       <p class="kind-of-stat">Population</p>
-      <canvas class="myChart" id="myChart" width="400" height="180"></canvas>
+      <canvas class="myPieChart" id="myPieChart"></canvas>
       
     </div>
     <div class="teams-civs">
@@ -32,7 +32,8 @@ const PieChartsPage = {
     return view;
   },
   after_render: async () => {
-    //new PieChartsPageClass(); //transfer data inside of ()
+    const pieChart = new PieChartsPageClass();
+    pieChart.chartIt();
     console.log('PieChartsPage rendered');
   },
 };

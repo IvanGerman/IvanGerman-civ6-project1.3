@@ -30,8 +30,8 @@ export class ChartPageClass {
       //this.allStatsForAllCivs = summed stats of team1 and 2
       this.getSpecialStat('population');
       const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
-      this.addEventListeners(statsButtonsWrapper);
-      data.setTeamModeIsOn = false;
+      this.addEventListeners(statsButtonsWrapper); console.log('chartpageclass 33');
+      //data.setTeamModeIsOn = false;
       const selectCivLink = document.querySelector('.sel-civ-li');
       selectCivLink.style.display = 'block';
       const pieChartsLink = document.querySelector('.pie-charts-li');

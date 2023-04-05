@@ -9,10 +9,15 @@ export class PieChartsPageClass {
   allCivs = data.allCivs;
   
 
-  constructor() {
+  constructor() {   
     this.team1Civs = document.querySelector('.team1Civs');
     this.team2Civs = document.querySelector('.team2Civs');
     console.log('pie data.csvRowsToArray--',data.csvRowsToArray);
+    if (data.teamModeIsOn === true) {
+      console.log('data.teamModeIsOn---',data.teamModeIsOn);
+    } else {
+      console.log('data.teamModeIsOn---',data.teamModeIsOn);
+    }
     //here we get all data for the chart
     //{ population: { 'france': 50, 'spain': 70},
     //  science: { 'france': 30, 'spain': 44},

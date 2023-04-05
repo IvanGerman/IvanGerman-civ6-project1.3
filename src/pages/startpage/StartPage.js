@@ -61,3 +61,6 @@ const StartPage = {
 };
 
 export default StartPage;
+
+
+{/* <p class="select-file-descr red-span">"C:\Users\*UserName*\AppData\Local\Firaxis Games\Sid Meier's Civilization VI"</p> */}

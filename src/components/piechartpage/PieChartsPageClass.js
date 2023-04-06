@@ -13,8 +13,15 @@ export class PieChartsPageClass {
     this.team1Civs = document.querySelector('.team1Civs');
     this.team2Civs = document.querySelector('.team2Civs');
     console.log('pie data.csvRowsToArray--',data.csvRowsToArray);
+    console.log(data.allCivs);
+    console.log(data.allCivsArrays);
+    let lastTurnNumber = data.csvRowsToArray[data.csvRowsToArray.length - 1][0];
+    console.log('lastTurnNumber---',lastTurnNumber);
+    //here we put all array elements with turn number = lastTurnNumber into an array:
+
     if (data.teamModeIsOn === true) {
       console.log('data.teamModeIsOn---',data.teamModeIsOn);
+      console.log(data.team1Civs,'---',data.team2Civs);
     } else {
       console.log('data.teamModeIsOn---',data.teamModeIsOn);
     }

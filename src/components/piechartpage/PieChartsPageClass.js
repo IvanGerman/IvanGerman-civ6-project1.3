@@ -1,7 +1,4 @@
 import { data } from "../../state/data";
-// import { GettingStats } from "./GettingStats";
-// import { GettingTeamStats } from "./GettingTeamStats";
-
 export class PieChartsPageClass {
 
   allCivs = data.allCivs;
@@ -16,11 +13,8 @@ export class PieChartsPageClass {
     this.yAxisTitle = document.querySelector('.kind-of-stat');
     // this.team1Civs = document.querySelector('.team1Civs');
     // this.team2Civs = document.querySelector('.team2Civs');
-    console.log('pie data.csvRowsToArray--',data.csvRowsToArray);
    
-    console.log(data.allCivsArrays);
     let lastTurnNumber = data.csvRowsToArray[data.csvRowsToArray.length - 1][0];
-    console.log('lastTurnNumber---',lastTurnNumber, typeof(lastTurnNumber));
     
     for ( let i = Number(data.csvRowsToArray.length) - 1; i >= 0; i-- ) {
       if ( data.csvRowsToArray[i][0] === lastTurnNumber ) {
@@ -29,26 +23,17 @@ export class PieChartsPageClass {
         break;
       }
     }
-    console.log('this.lastTurnStats-',this.lastTurnStats);
 
     if (data.teamModeIsOn === true) {
-      console.log('data.teamModeIsOn---',data.teamModeIsOn);
-      console.log(data.team1Civs,'---',data.team2Civs);
-      this.labels = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
-      this.getSpecialStatForTeam('population', 3);
+      this.labels = ['TEAM1', 'TEAM2'];
+      this.allCivs = ['TEAM1', 'TEAM2'];
+      this.getSpecialStat('population', 3);
     };
 
     if (data.teamModeIsOn === false) {
-      console.log('data.teamModeIsOn---',data.teamModeIsOn);
-      console.log(this.allCivs);
       this.labels = this.allCivs;
       this.getSpecialStat('population', 3)
     };
-    console.log('this.renderPieData--',this.renderPieData);
-    //here we get all data for the chart
-    //{ population: { 'france': 50, 'spain': 70},
-    //  science: { 'france': 30, 'spain': 44},
-    //}
   }   
 
 
@@ -92,16 +77,45 @@ export class PieChartsPageClass {
       });
   };
 
-  getSpecialStat(kindOfStat = 'population', statArrayIndex = 3) { console.log('kindOfStat--',kindOfStat);
+
+
+  getSpecialStat(kindOfStat = 'population', statArrayIndex = 3) {
+    if ( data.teamModeIsOn === true ) {
+      this.renderPieData = this.getRenderPieDataForTeams(kindOfStat, statArrayIndex);
+      this.chartIt();
+      this.yAxisTitle.innerHTML = kindOfStat;
+      return;
+    }
     this.getRenderPieData(statArrayIndex);
     this.chartIt();
     this.yAxisTitle.innerHTML = kindOfStat;
-    console.log('this.renderPieData--',this.renderPieData);
   };
 
-  getSpecialStatForTeam(kindOfStat = 'population', statArrayIndex = 3) {
-    console.log('getSpecialStatForTeam',data.team1Civs,data.team2Civs);
+
+
+  getRenderPieDataForTeams(kindOfStat = 'population', statArrayIndex = 3) {
+    if (this.renderPieData.length !== 0) {this.renderPieData = []};
+    let team1Score = 0;
+    let team2Score = 0;
+
+    function sumUpTeamScore(teamCivs, statArrayIndex, lastTurnStats) {
+      let summedScore = 0;  
+      teamCivs.forEach((elem) => {
+        for ( let i = 0; i < lastTurnStats.length; i += 1 ) {
+          if ( lastTurnStats[i][1] === ` CIVILIZATION_${elem}`) {
+            summedScore = summedScore + Number(lastTurnStats[i][statArrayIndex]);
+          }
+        }
+      });
+      return summedScore;
+    };
+
+    team1Score = sumUpTeamScore(data.team1Civs, statArrayIndex, this.lastTurnStats);
+    team2Score = sumUpTeamScore(data.team2Civs, statArrayIndex, this.lastTurnStats);
+    return [team1Score, team2Score];
   };
+
+
 
   getRenderPieData(statArrayIndex) {
     if (this.renderPieData.length !== 0) {this.renderPieData = []};
@@ -114,6 +128,7 @@ export class PieChartsPageClass {
     }
   };
   
+
 
   addEventListeners(element) {
 

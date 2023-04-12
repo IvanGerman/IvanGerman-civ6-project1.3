@@ -11,8 +11,12 @@ export class PieChartsPageClass {
     const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
     this.addEventListeners(statsButtonsWrapper);
     this.yAxisTitle = document.querySelector('.kind-of-stat');
-    // this.team1Civs = document.querySelector('.team1Civs');
-    // this.team2Civs = document.querySelector('.team2Civs');
+    this.team1Civs = document.querySelector('.team1Civs');
+    this.team2Civs = document.querySelector('.team2Civs');
+    this.team1Civs.style.color = 'rgb(255, 99, 132)';
+    this.team2Civs.style.color = 'rgb(54, 162, 235)';
+    this.team1Civs.innerHTML = `TEAM1:__${data.team1Civs.join(`,  `)}`;
+    this.team2Civs.innerHTML = `TEAM2:__${data.team2Civs.join(`,  `)}`;
    
     let lastTurnNumber = data.csvRowsToArray[data.csvRowsToArray.length - 1][0];
     

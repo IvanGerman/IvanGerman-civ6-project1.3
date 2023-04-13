@@ -13,6 +13,8 @@ class SelectTeamCivs {
     selectCivLink.style.display = 'none';
     const pieChartsLink = document.querySelector('.pie-charts-li');
     pieChartsLink.style.display = 'none';
+    const lineChartsLink = document.querySelector('.line-charts-li');
+    lineChartsLink.style.display = 'none';
     data.setIsDiv1Selected = false;
     data.setIsDiv2Selected = false;
     this.render();

@@ -23,6 +23,10 @@
 .select-civ-for-governour {
   grid-column: 1/3;
   grid-row: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25vh !important;
 }
 
 .selection {

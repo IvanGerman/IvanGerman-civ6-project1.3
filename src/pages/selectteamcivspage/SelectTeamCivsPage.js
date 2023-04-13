@@ -15,8 +15,7 @@ const SelectTeamCivsPage = {
           <div class="civs-wrapper" ></div>
         </div>
         <div class="select-civ-for-governour selection">
-          <p>Select a civ, to see stats of governor use (in progress...)</p>
-          <div class="civs-wrapper" ></div>
+          <p>Districts discount calculator (in progress...)</p>
         </div>
       </div>
     `;

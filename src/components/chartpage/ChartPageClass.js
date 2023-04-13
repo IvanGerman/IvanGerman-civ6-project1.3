@@ -18,6 +18,11 @@ export class ChartPageClass {
     this.team1Civs = document.querySelector('.team1Civs');
     this.team2Civs = document.querySelector('.team2Civs');
     this.yAxisTitle = document.querySelector('.kind-of-stat');
+    const pieChartsLink = document.querySelector('.pie-charts-li');
+    pieChartsLink.style.display = 'block';  
+    const lineChartsLink = document.querySelector('.line-charts-li');
+    lineChartsLink.style.display = 'block';
+    
     if (data.teamModeIsOn === true) {
       this.allCivs = data.allCivsForTeamSelection;//this.allCivs = both teams
       this.getAllStatsForAllCivs(this.allCivs);
@@ -34,8 +39,6 @@ export class ChartPageClass {
       //data.setTeamModeIsOn = false;
       const selectCivLink = document.querySelector('.sel-civ-li');
       selectCivLink.style.display = 'block';
-      const pieChartsLink = document.querySelector('.pie-charts-li');
-      pieChartsLink.style.display = 'block';
       return;
     };
     if (data.teamModeIsOn === false) {
@@ -47,8 +50,6 @@ export class ChartPageClass {
     }; 
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'block';
-    const pieChartsLink = document.querySelector('.pie-charts-li');
-    pieChartsLink.style.display = 'block';
   }   
 
   getDataForOneCiv(civ) {

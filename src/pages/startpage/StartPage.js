@@ -26,6 +26,8 @@ const StartPage = {
     selectCivLink.style.display = 'none';
     const pieChartsLink = document.querySelector('.pie-charts-li');
     pieChartsLink.style.display = 'none';
+    const lineChartsLink = document.querySelector('.line-charts-li');
+    lineChartsLink.style.display = 'none';
     
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);

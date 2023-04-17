@@ -15,6 +15,7 @@ export class PieChartsPageClass {
     this.team2Civs = document.querySelector('.team2Civs');
     this.team1Civs.style.color = 'rgb(255, 99, 132)';
     this.team2Civs.style.color = 'rgb(54, 162, 235)';
+
     if ( data.teamModeIsOn === true ) {
       this.team1Civs.style.display = 'block';
       this.team2Civs.style.display = 'block';
@@ -44,7 +45,10 @@ export class PieChartsPageClass {
     };
 
     if (data.teamModeIsOn === false) {
-      this.labels = this.allCivs;
+      this.labels.length = 0;
+      data.allCivs.forEach((elem) => {
+        this.labels.push(elem.substr(14));
+      });
       this.getSpecialStat('population', 3)
     };
   }   

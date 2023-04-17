@@ -6,15 +6,17 @@ const StartPage = {
     const view = `
       <div class="start-page-div">
         <p class="select-file-descr">Select "Player_Stats.csv" file from your</p>
-        <p class="select-file-descr red-span">"Computer/Documents/My Games/Sid Meier's Civilization VI/Logs"</p>
+        <p class="select-file-descr red-span">"C:/ Users / *Your User Name* / AppData / Local / Firaxis Games / Sid Meier's Civilization VI / Logs"</p>
         <p class="select-file-descr">folder  *</p>
         <input type="file" id="myfile" name="myfile" accept=".csv" placeholder="Player_Stats.csv">
       </div>
       <div class="enable-log">
-        <p class="enable-log-p">* If you dont see the file "Player_Stats.csv" in your Logs directory, go to   the file "AppOptions.txt" following the path Computer/Documents/My Games/Sid Meier's Civilization VI/AppOptions.txt , open "AppOptions.txt" (with WordPad, for example), scroll down, until you see the option "Log all game core events." , now change "EnableGameCoreEventLog 0" to   EnableGameCoreEventLog 1"<p>
+        <p class="enable-log-p">* If you dont see the file "Player_Stats.csv" in your Logs directory, go to   the file "AppOptions.txt" following the path C:/Users/*Your User Name*/AppData/Local/Firaxis Games/Sid Meier's Civilization VI/AppOptions.txt , open "AppOptions.txt" (with WordPad, for example), scroll down, until you see the option "Log all game core events." , now change "EnableGameCoreEventLog 0" to   EnableGameCoreEventLog 1"<p>
+        <br>
+        <p class="enable-log-p">Notice - every time you restart the game, the old "Player_Stats.csv" file will be deleted</p>
       </div>
       <div class="dev-name">
-        2022
+        2023
         <a class="github-link" href="https://github.com/IvanGerman" target="_blank">Ivan German</a>
       </div>
     `;

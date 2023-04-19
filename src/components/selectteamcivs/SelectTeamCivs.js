@@ -23,15 +23,19 @@ class SelectTeamCivs {
   async render() {
     const civsButtonsBlock = this.createCivsButtons();
     const allCivsWrappers = document.querySelectorAll('.civs-wrapper');
-    for (let i = 0; i < 3; i += 1) {
-      const innerDiv = document.createElement('div');
-      innerDiv.classList.add(`innerDiv${i + 1}`);
-      innerDiv.innerHTML = civsButtonsBlock;
-      allCivsWrappers[i].append(innerDiv);
-      let element = document.querySelector(`.innerDiv${i + 1}`);
-      this.addEventList(element);
-    }
-  }
+    try {
+      for (let i = 0; i < 3; i += 1) {
+        const innerDiv = document.createElement('div');
+        innerDiv.classList.add(`innerDiv${i + 1}`);
+        innerDiv.innerHTML = civsButtonsBlock;
+        allCivsWrappers[i].append(innerDiv);
+        let element = document.querySelector(`.innerDiv${i + 1}`);
+        this.addEventList(element);
+      }
+    } catch {
+    
+    }   
+  };
 
   createCivsButtons() {
     let civsButtonsBlock = this.allCivs.map(function callback(civ) {

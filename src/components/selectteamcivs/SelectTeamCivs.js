@@ -7,7 +7,7 @@ class SelectTeamCivs {
     
     this.allCivs = data.allCivsArrays;
 
-    data.setAllCivsForTeamSelection = this.allCivs;  console.log('this.allCivs--',this.allCivs);
+    data.setAllCivsForTeamSelection = this.allCivs;
     this._selectionLogicObj = new SelectionLogic();
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'none';
@@ -97,7 +97,7 @@ class SelectTeamCivs {
           }
           data.setIsDiv2Selected = true;
 
-          if (event.target.classList[1] === 'selectedCiv') {
+          if (event.target.classList[1] === 'selectedCiv') { 
             event.target.classList.remove('selectedCiv');
             this._selectionLogicObj.removeFromCivsForComparing(event.target.innerHTML);
             return;

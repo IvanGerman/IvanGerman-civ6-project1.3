@@ -97,7 +97,7 @@ export class SelectionLogic {
     return this.civsForComparing;
   }
 
-  removeFromCivsForComparing(selectedCiv) {
+  removeFromCivsForComparing(selectedCiv) { 
     if (this.civsForComparing.length === 1) {
       this.paragraph2.removeEventListener('click', this.func2Callback
       )
@@ -110,7 +110,11 @@ export class SelectionLogic {
     };
 
     this.civsForComparingCount -= 1;
-    this.civsForComparing.pop(selectedCiv);
+
+    this.civsForComparing = this.civsForComparing.filter(function (civ) {
+      return civ !== ` CIVILIZATION_${selectedCiv}`;
+  });  
+    data.setAllCivs = this.civsForComparing;
     return this.civsForComparing;
   }
 

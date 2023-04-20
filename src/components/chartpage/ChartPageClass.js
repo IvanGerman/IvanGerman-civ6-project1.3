@@ -22,6 +22,8 @@ export class ChartPageClass {
     pieChartsLink.style.display = 'block';  
     const lineChartsLink = document.querySelector('.line-charts-li');
     lineChartsLink.style.display = 'block';
+    const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
+    this.addEventListeners(statsButtonsWrapper);
     
     if (data.teamModeIsOn === true) {
       this.allCivs = data.allCivsForTeamSelection;//this.allCivs = both teams
@@ -34,8 +36,6 @@ export class ChartPageClass {
       this.allCivs = ['CIVILIZATION__TEAM1', 'CIVILIZATION__TEAM2'];
       //this.allStatsForAllCivs = summed stats of team1 and 2
       this.getSpecialStat('population');
-      const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
-      this.addEventListeners(statsButtonsWrapper); console.log('chartpageclass 33');
       //data.setTeamModeIsOn = false;
       const selectCivLink = document.querySelector('.sel-civ-li');
       selectCivLink.style.display = 'block';
@@ -45,8 +45,6 @@ export class ChartPageClass {
       this.getAllStatsForAllCivs(this.allCivs);
       this.getXLabelsValues(this.allCivs);
       this.getSpecialStat('population');
-      const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
-      this.addEventListeners(statsButtonsWrapper);
     }; 
     const selectCivLink = document.querySelector('.sel-civ-li');
     selectCivLink.style.display = 'block';

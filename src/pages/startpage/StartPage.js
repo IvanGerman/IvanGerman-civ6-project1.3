@@ -54,7 +54,6 @@ const StartPage = {
           rows.forEach((elem) => {
             csvRowsToArray.push(elem.split(','));
           });
-          console.log('csvRowsToArray--',csvRowsToArray);
           parseDataClassObj.extractDataLevel1(csvRowsToArray);
         };
       }

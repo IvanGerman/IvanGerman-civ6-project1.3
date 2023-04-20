@@ -62,7 +62,6 @@ const PieChartsPage = {
   after_render: async () => {
     const pieChart = new PieChartsPageClass();
     pieChart.chartIt();
-    console.log('PieChartsPage rendered');
   },
 };
 

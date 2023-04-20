@@ -171,7 +171,6 @@ export class ParseDataClass {
     allCivsByTurns = Array.prototype.concat.apply([], allCivsByTurns);
     // put the final result of csv file parsing into data object from main state
     data.setCsvRowsToArray = [...allCivsByTurns];
-    console.log('final allCivsByTurns',allCivsByTurns);
     changeUrl('selectteamcivs');
     return;
   }

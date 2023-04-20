@@ -41,7 +41,7 @@ const StartPage = {
       //here we prove the correct file name
       if (fileList[0].name !== 'Player_Stats.csv') {
         alert('wrong file, should be "Player_Stats.csv"');
-        //return;
+        return;
       }
 
       //asynchronous action

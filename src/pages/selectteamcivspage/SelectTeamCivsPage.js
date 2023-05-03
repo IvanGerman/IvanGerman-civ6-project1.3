@@ -17,6 +17,12 @@ const SelectTeamCivsPage = {
         <div class="select-civ-for-governour selection">
           <p>Districts discount calculator (in progress...)</p>
         </div>
+        <div class="temple-wrapper" >
+          <img src="./../../assets/img/temple.jpg" alt="" usemap="#workmap" />
+          <map name="workmap">
+            <area shape="rect" coords="0,0,100,50" alt="temple" href="#cheatingtemple">
+          </map>
+        </div>
       </div>
     `;
     return view;

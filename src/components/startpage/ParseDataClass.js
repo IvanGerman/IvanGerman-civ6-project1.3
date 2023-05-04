@@ -117,6 +117,32 @@ export class ParseDataClass {
     //remove city states
     mainArray = Array.prototype.concat.apply([], mainArray);
 
+
+
+    //get all city states--------------------------
+    let turn1Civs = mainArray.filter((elem) => {
+      return (elem[0] === '1');
+    });
+
+    let allCityStatesList = turn1Civs.filter((elem) => {
+      return (allCityStates.includes(elem[1]));
+    });
+    allCityStatesList = allCityStatesList.filter((elem) => {
+      return (elem[1] !== ' CIVILIZATION_FREE_CITIES');
+    });
+    console.log(allCityStatesList);
+    let allCS = [];
+    allCityStatesList.forEach((elem) => {
+      allCS.push(elem[1].substring(14));
+    });
+    console.log(allCS);
+    data.setAllCityStates = allCS;
+    console.log('3434',data.allCityStates)
+    //---------------------------------------------
+
+
+
+
     let allCivs = mainArray.filter((elem) => {
       return !(allCityStates.includes(elem[1]));
     });

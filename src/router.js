@@ -3,12 +3,14 @@ import SelectTeamCivs from './pages/selectteamcivspage/SelectTeamCivsPage';
 import ChartPage from './pages/chartpage/ChartPage';
 import PieChartsPage from './pages/pieChartsPage/PieChartsPage';
 import Utils from './utils/Utils';
+import CheatingTemplePage from './pages/cheatingTemplePage/cheatingTemplePage';
 
 const routes = {
   '/': StartPage ,
   '/selectteamcivs': SelectTeamCivs ,
   '/chartpage': ChartPage ,
   '/piecharts': PieChartsPage ,
+  '/cheatingtemple': CheatingTemplePage ,
 };
 
 const router = async () => {

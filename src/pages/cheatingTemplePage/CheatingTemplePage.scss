@@ -17,7 +17,30 @@
 
 .csWrapper {
   position: absolute;
+  width: 60vw;
+  height: 60vh;
+  background-color: rgba(0,0,0,.5);
+  border-radius: 20px;
+  left: 20vw;
+  top: 20vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
-  left: 30%;
-  top: 30%;
+.citystates {
+  width: 16vw;
+  height: 26vh;
+  border-radius: 20px;
+  border: 2px solid rgb(17, 5, 85);
+}
+
+
+.orangecs {
+  display: flex;
+  flex-wrap: wrap;
+  color: #cf6005;
 }

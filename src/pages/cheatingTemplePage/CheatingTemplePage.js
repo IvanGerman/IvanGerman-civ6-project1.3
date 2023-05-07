@@ -6,6 +6,9 @@ const CheatingTemplePage = {
   render: async () => {
     const view = `
     <div class="cheatingTempleWrapper">
+      <div class="templeIntro">
+        <p>After you prayed to the Gods of Civ, they revealed you all city states in the game</p>
+      </div>
       <div class="csWrapper">
         <div class="goldcs citystates"></div>
         <div class="bluecs citystates"></div>
@@ -20,36 +23,53 @@ const CheatingTemplePage = {
     return view;
   },
   after_render: async () => {
-    console.log('CheatingTemplePageClass rendered', data.allCityStates);
-    //new CheatingTemplePageClass();  
+    
+    const selectCivLink = document.querySelector('.sel-civ-li');
+      selectCivLink.style.display = 'block';  
+
     const allGoldCS = data.allCityStates.filter((elem) => {
       return (goldCityStates.includes(elem));
     });
     const goldcsWrapper = document.querySelector('.goldcs');
-    goldcsWrapper.innerHTML = [...allGoldCS];
-    console.log('allGoldCS--',allGoldCS);
+    goldcsWrapper.innerHTML = makeInnerHtml(allGoldCS);
+
     const allBlueCS = data.allCityStates.filter((elem) => {
       return (blueCityStates.includes(elem));
     });
-    console.log('allBlueCS--',allBlueCS);
+    const bluecsWrapper = document.querySelector('.bluecs');
+    bluecsWrapper.innerHTML = makeInnerHtml(allBlueCS);
+
     const allRedCS = data.allCityStates.filter((elem) => {
       return (redCityStates.includes(elem));
     });
-    console.log('allRedCS--',allRedCS);
+    const redcsWrapper = document.querySelector('.redcs');
+    redcsWrapper.innerHTML = makeInnerHtml(allRedCS);
+
     const allWhiteCS = data.allCityStates.filter((elem) => {
       return (whiteCityStates.includes(elem));
     });
-    console.log('allWhiteCS--',allWhiteCS);
+    const whitecsWrapper = document.querySelector('.whitecs');
+    whitecsWrapper.innerHTML = makeInnerHtml(allWhiteCS);
+
     const allOrangeCS = data.allCityStates.filter((elem) => {
       return (orangeCityStates.includes(elem));
     });
     const orangecsWrapper = document.querySelector('.orangecs');
-    orangecsWrapper.innerHTML = [...allOrangeCS];
-    console.log('allOrangeCS--',allOrangeCS);
+    orangecsWrapper.innerHTML = makeInnerHtml(allOrangeCS);
+    
     const allPinkCS = data.allCityStates.filter((elem) => {
       return (pinkCityStates.includes(elem));
     });
-    console.log('allPinkCS--',allPinkCS);
+    const pinkcsWrapper = document.querySelector('.pinkcs');
+    pinkcsWrapper.innerHTML = makeInnerHtml(allPinkCS);
+
+    function makeInnerHtml(cityStates) {
+      let innerHtml = '';
+      cityStates.forEach(element => {
+        innerHtml += `<p>${element}</p>`
+      });
+      return innerHtml;
+    }
   },
 };
 

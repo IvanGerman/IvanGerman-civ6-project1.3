@@ -50,7 +50,7 @@ export const blueCityStates = ['BOLOGNA', 'PALENQUE', 'TARUGA', 'FEZ', 'NALANDA'
 
 export const redCityStates = ['NGAZARGAMU', 'PRESLAV', 'AKKAD', 'GRANADA', 'WOLIN', 'VALLETTA', 'KABUL'];
 
-export const whiteCityStates = ['ARMAGH', 'VATICAN_CITY', 'KANDY', 'NAZCA', 'LA_VENTA', ' YEREVAN', ' JERUSALEM', 'CHINGUETTI'];
+export const whiteCityStates = ['ARMAGH', 'VATICAN_CITY', 'KANDY', 'NAZCA', 'LA_VENTA', 'YEREVAN', ' JERUSALEM', 'CHINGUETTI'];
 
 export const orangeCityStates = ['BRUSSELS', 'AUCKLAND', 'SINGAPORE', 'JOHANNESBURG', 'BUENOS_AIRES', 'MEXICO_CITY', 'HONG_KONG', 'CARDIFF'];
 

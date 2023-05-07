@@ -4,7 +4,6 @@
   background-color: #333;
   color: #ffffff;
   margin-top: 10vh;
-  border: 1px solid red;
   display: grid;
   justify-content: center;
   position: relative;
@@ -13,6 +12,22 @@
 .cheatingTempleWrapper img {
   max-width: 100vw;
   
+}
+
+.templeIntro {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+}
+
+.templeIntro p {
+  font-size: 25px;
+  color: #fff;
+  letter-spacing: 2px;
 }
 
 .csWrapper {
@@ -35,12 +50,38 @@
   width: 16vw;
   height: 26vh;
   border-radius: 20px;
-  border: 2px solid rgb(17, 5, 85);
+  border: 2px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
+.citystates p {
+  margin-bottom: 1.5vh;
+  font-size: 20px;
+}
+
+.goldcs {
+  color: gold; 
+}
+
+.bluecs {
+  color: #2ed5f7; 
+}
+
+.pinkcs {
+  color: #ea22a1; 
+}
 
 .orangecs {
-  display: flex;
-  flex-wrap: wrap;
-  color: #cf6005;
+  color: #cf6005; 
+}
+
+.redcs {
+  color: #b70303; 
+}
+
+.whitecs {
+  color: #fff; 
 }

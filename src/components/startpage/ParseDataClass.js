@@ -130,14 +130,11 @@ export class ParseDataClass {
     allCityStatesList = allCityStatesList.filter((elem) => {
       return (elem[1] !== ' CIVILIZATION_FREE_CITIES');
     });
-    console.log(allCityStatesList);
     let allCS = [];
     allCityStatesList.forEach((elem) => {
       allCS.push(elem[1].substring(14));
     });
-    console.log(allCS);
     data.setAllCityStates = allCS;
-    console.log('3434',data.allCityStates)
     //---------------------------------------------
 
 

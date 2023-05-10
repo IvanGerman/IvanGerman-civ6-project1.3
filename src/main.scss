@@ -73,7 +73,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.sel-civ-li, .pie-charts-li, .line-charts-li {
+.sel-civ-li, .pie-charts-li, .line-charts-li, .timestamp {
   display: none;
 }
 
@@ -83,4 +83,8 @@ body {
 
 li {
   font-size: 28px !important;
+}
+
+.timestamp {
+  color: #ffffff;
 }

@@ -15,6 +15,8 @@ class SelectTeamCivs {
     pieChartsLink.style.display = 'none';
     const lineChartsLink = document.querySelector('.line-charts-li');
     lineChartsLink.style.display = 'none';
+    const timeStampSpan = document.querySelector('.timestamp');
+    timeStampSpan.style.display = 'none';
     data.setIsDiv1Selected = false;
     data.setIsDiv2Selected = false;
     this.render();

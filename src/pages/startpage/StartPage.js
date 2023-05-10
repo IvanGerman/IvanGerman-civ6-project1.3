@@ -30,6 +30,8 @@ const StartPage = {
     pieChartsLink.style.display = 'none';
     const lineChartsLink = document.querySelector('.line-charts-li');
     lineChartsLink.style.display = 'none';
+    const timeStampSpan = document.querySelector('.timestamp');
+    timeStampSpan.style.display = 'none';
     
     const inputElement = document.getElementById('myfile');
     inputElement.addEventListener('change', handleFiles, false);

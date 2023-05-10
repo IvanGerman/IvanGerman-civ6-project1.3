@@ -22,8 +22,18 @@ export class ChartPageClass {
     pieChartsLink.style.display = 'block';  
     const lineChartsLink = document.querySelector('.line-charts-li');
     lineChartsLink.style.display = 'block';
+    const timeStampSpan = document.querySelector('.timestamp');
+    timeStampSpan.style.display = 'block';
     const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
     this.addEventListeners(statsButtonsWrapper);
+
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    let newdate = year + "/" + month + "/" + day;
+    timeStampSpan.innerHTML = newdate;
     
     if (data.teamModeIsOn === true) {
       this.allCivs = data.allCivsForTeamSelection;//this.allCivs = both teams

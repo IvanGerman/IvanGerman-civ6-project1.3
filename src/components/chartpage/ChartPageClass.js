@@ -27,12 +27,9 @@ export class ChartPageClass {
     const statsButtonsWrapper = document.querySelector('.statsButtonsWrapper');
     this.addEventListeners(statsButtonsWrapper);
 
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
-
-    let newdate = year + "/" + month + "/" + day;
+    
+    let dateObj = new Date();
+    let newdate = dateObj.toUTCString();
     timeStampSpan.innerHTML = newdate;
     
     if (data.teamModeIsOn === true) {
